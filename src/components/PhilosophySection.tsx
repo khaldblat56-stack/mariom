@@ -2,8 +2,11 @@
 
 import { Target, Zap } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 export function PhilosophySection() {
+  const { t } = useTranslation();
+
   return (
     <section id="philosophy" className="py-40 px-6 bg-white overflow-hidden">
       <div className="container mx-auto">
@@ -15,8 +18,8 @@ export function PhilosophySection() {
             transition={{ duration: 0.65, ease: "easeOut" }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold font-display text-brand-dark mb-6">فلسفتي في العمل</h2>
-            <h3 className="text-3xl text-brand-cyan font-bold">الوضوح قبل التنفيذ</h3>
+            <h2 className="text-5xl font-bold font-display text-brand-dark mb-6">{t("philosophy.title")}</h2>
+            <h3 className="text-3xl text-brand-cyan font-bold">{t("philosophy.subtitle")}</h3>
           </motion.div>
 
           <motion.div
@@ -34,8 +37,7 @@ export function PhilosophySection() {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
               className="text-2xl md:text-3xl leading-relaxed font-medium mb-16"
             >
-              أؤمن بالوضوح التام والابتعاد عن التعقيد اللفظي. هدفي ليس مجرد زيادة الضجيج التسويقي، بل توجيه الجهد نحو
-              القنوات التي تحقق عائداً حقيقياً.
+              {t("philosophy.body")}
             </motion.p>
 
             <div className="grid md:grid-cols-2 gap-10">
@@ -49,8 +51,8 @@ export function PhilosophySection() {
                 <div className="bg-brand-cyan w-12 h-12 rounded-xl flex items-center justify-center">
                   <Target className="w-7 h-7 text-white" />
                 </div>
-                <h4 className="text-2xl font-bold text-brand-yellow">إذا وجدنا خللاً</h4>
-                <p className="text-xl text-gray-300">سنواجهه بشفافية وصراحة تامة للوصول للحل الأنسب.</p>
+                <h4 className="text-2xl font-bold text-brand-yellow">{t("philosophy.problemTitle")}</h4>
+                <p className="text-xl text-gray-300">{t("philosophy.problemBody")}</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 26 }}
@@ -62,8 +64,8 @@ export function PhilosophySection() {
                 <div className="bg-brand-yellow w-12 h-12 rounded-xl flex items-center justify-center">
                   <Zap className="w-7 h-7 text-brand-dark" />
                 </div>
-                <h4 className="text-2xl font-bold text-brand-yellow">وإذا رصدنا فرصة</h4>
-                <p className="text-xl text-gray-300">سنغتنمها بمنهجية منظمة تضمن أقصى استفادة ممكنة.</p>
+                <h4 className="text-2xl font-bold text-brand-yellow">{t("philosophy.opportunityTitle")}</h4>
+                <p className="text-xl text-gray-300">{t("philosophy.opportunityBody")}</p>
               </motion.div>
             </div>
 
@@ -75,7 +77,7 @@ export function PhilosophySection() {
               className="mt-16 text-center"
             >
               <p className="text-2xl font-bold text-brand-cyan bg-brand-cyan/10 inline-block px-10 py-4 rounded-full">
-                فالغاية ليست كثرة العمل، بل دقة الإنجاز.
+                {t("philosophy.closing")}
               </p>
             </motion.div>
           </motion.div>

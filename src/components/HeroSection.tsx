@@ -3,14 +3,15 @@
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { motion } from "motion/react";
-
-function scrollToContact() {
-  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-}
+import { useTranslation } from "react-i18next";
+import { useSmoothScroll } from "@/contexts/SmoothScrollContext";
 
 export function HeroSection() {
+  const { t } = useTranslation();
+  const { scrollTo } = useSmoothScroll();
+
   return (
-    <section className="hero-surface relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center">
+    <section className="hero-surface relative pt-0 pb-20 overflow-hidden min-h-screen flex items-center">
       <div className="hero-grid pointer-events-none absolute inset-0 opacity-60" />
       <div className="hero-dot-field pointer-events-none absolute inset-x-0 top-24 h-80 opacity-30" />
       <div className="animate-soft-float-slow pointer-events-none absolute -right-24 top-32 h-80 w-80 rounded-full bg-brand-cyan/10 blur-[90px]" />
@@ -28,19 +29,20 @@ export function HeroSection() {
         >
           <div className="pointer-events-none absolute -bottom-8 right-0 h-36 w-full max-w-2xl rounded-full bg-brand-cyan/10 blur-[80px]" />
           <h1 className="text-4xl md:text-6xl font-bold leading-tight font-display text-brand-dark">
-            مريم <span className="text-brand-cyan">|</span> خبيرة بناء <br />
-            الهوية والنمو <span className="text-brand-cyan">المستدام</span>
+            {t("hero.titleStart")} <span className="text-brand-cyan">|</span> {t("hero.titleMiddle")} <br />
+            {t("hero.titleLine")} <span className="text-brand-cyan">{t("hero.titleHighlight")}</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl">
-            أرافقكم في رحلة بناء علامات تجارية راسخة وتصميم خطط تسويقية مبنية على الأرقام لتحقيق نتائج ملموسة.
+            {t("hero.description")}
           </p>
 
           <div className="mt-8 flex flex-col gap-6">
             <button
-              onClick={scrollToContact}
+              type="button"
+              onClick={() => scrollTo("#contact", { offset: -88 })}
               className="w-full md:w-fit bg-brand-dark text-white flex items-center justify-center gap-4 px-10 py-5 rounded-full text-xl font-bold hover:bg-brand-cyan transition-all group shadow-xl shadow-brand-dark/20"
             >
-              احجز جلستك الاستشارية الآن
+              {t("hero.cta")}
               <ArrowLeft className="w-6 h-6 group-hover:-translate-x-2 transition-transform" />
             </button>
           </div>
@@ -58,7 +60,7 @@ export function HeroSection() {
             <div className="hero-portrait-glow pointer-events-none absolute inset-x-[-6%] bottom-[-3%] z-0 h-[34%]" />
             <Image
               src="/hero.png"
-              alt="مريم - استشارات تسويقية"
+              alt={t("hero.imageAlt")}
               width={2754}
               height={1536}
               priority
