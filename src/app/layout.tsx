@@ -14,9 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body>
+      <body className="scrollbar">
         {children}
-        </body>
+      </body>
     </html>
   );
 }

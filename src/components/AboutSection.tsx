@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 export function AboutSection() {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="py-32 px-6 bg-white relative overflow-hidden">
       <div className="container mx-auto">
@@ -18,7 +21,7 @@ export function AboutSection() {
             <div className="absolute top-0 right-0 w-full h-full bg-brand-yellow/10 rounded-[3rem] transform translate-x-4 translate-y-4" />
             <Image
               src="/second.png"
-              alt="مسيرة مريم من الخبرة والشغف"
+              alt={t("about.imageAlt")}
               width={2754}
               height={1536}
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -34,8 +37,8 @@ export function AboutSection() {
             className="flex flex-col gap-8 order-1 lg:order-2"
           >
             <div className="flex flex-col gap-2">
-              <span className="text-brand-cyan font-bold tracking-widest uppercase">الرحلة والخبرة</span>
-              <h2 className="text-5xl font-bold font-display text-brand-dark">مسيرة من الخبرة والشغف</h2>
+              <span className="text-brand-cyan font-bold tracking-widest uppercase">{t("about.eyebrow")}</span>
+              <h2 className="text-5xl font-bold font-display text-brand-dark">{t("about.title")}</h2>
             </div>
 
             <motion.div
@@ -46,22 +49,20 @@ export function AboutSection() {
               className="space-y-6 text-xl leading-relaxed text-gray-700 font-medium"
             >
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
-                بدأت رحلتي المهنية في عام 2013، حيث صقلت مهاراتي في كبرى الشركات عبر مجالات متكاملة تشمل التصميم
-                الهوياتي، التسويق الرقمي، وتحسين ظهور المحركات (SEO).
+                {t("about.paragraph1")}
               </motion.p>
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
-                خلال تلك السنوات، شهدتُ عن قرب عوامل صعود العلامات التجارية.. وأسباب تعثرها رغم وفرة الموارد. وفي عام
-                2019، توجتُ هذه الخبرة بتأسيس <span className="text-brand-cyan">Creativity Company</span>.
+                {t("about.paragraph2Start")} <span className="text-brand-cyan">{t("about.company")}</span>.
               </motion.p>
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
-                مع الوقت، أدركتُ أن أصحاب المشاريع الطموحة لا يبحثون عن مجرد "وكالة تنفيذية"، بل يحتاجون إلى{" "}
-                <span className="text-brand-cyan">"شريك استراتيجي"</span> يفهم رؤيتهم ويوجههم بصدق نحو المسار الصحيح.
+                {t("about.paragraph3Start")} <span className="text-brand-cyan">{t("about.partner")}</span>{" "}
+                {t("about.paragraph3End")}
               </motion.p>
               <motion.p
                 variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
                 className="bg-brand-dark text-white p-8 rounded-3xl border-r-8 border-brand-yellow"
               >
-                لذا، أقدم اليوم استشاراتي التسويقية بأسلوب يجمع بين البساطة، الشفافية، والمنهجية العملية.
+                {t("about.highlight")}
               </motion.p>
             </motion.div>
           </motion.div>
