@@ -21,8 +21,8 @@ export function ServicesSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="services" className="py-32 px-6 bg-brand-cyan/5 rounded-[4rem] mx-4">
-      <div className="container mx-auto">
+    <section id="services" className="py-32 bg-brand-cyan/5 rounded-[4rem]">
+      <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}

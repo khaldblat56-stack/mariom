@@ -54,7 +54,7 @@ export function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className={`container mx-auto flex items-center justify-between gap-4 px-6 transition-all duration-300 ${isScrolled ? "py-3" : "py-4"}`}>
+      <nav className={`site-container flex items-center justify-between gap-4 transition-all duration-300 ${isScrolled ? "py-3" : "py-4"}`}>
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1 text-xl font-bold text-brand-cyan sm:text-2xl">
             {t("brand.name")} <span className="text-brand-yellow font-normal">| {t("brand.consulting")}</span>
@@ -103,7 +103,7 @@ export function Navbar() {
       </nav>
 
       <div
-        className={`container mx-auto overflow-hidden px-6 transition-[max-height,opacity,padding] duration-300 md:hidden ${
+        className={`site-container overflow-hidden transition-[max-height,opacity,padding] duration-300 md:hidden ${
           isMenuOpen ? "max-h-96 pb-4 opacity-100" : "max-h-0 pb-0 opacity-0"
         }`}
       >

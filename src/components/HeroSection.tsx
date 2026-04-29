@@ -18,7 +18,7 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-white via-white/65 via-45% to-transparent blur-md" />
       <div className="pointer-events-none absolute inset-x-0 bottom-6 z-10 h-32 bg-brand-cyan/8 blur-[90px]" />
 
-      <div className="main-content relative z-10 mx-auto grid w-full max-w-[1650px] items-center gap-8 sm:gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12">
+      <div className="site-container relative z-10 grid items-center gap-8 sm:gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
