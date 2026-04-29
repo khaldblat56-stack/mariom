@@ -8,8 +8,8 @@ export function AboutSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="about" className="py-32 px-6 bg-white relative overflow-hidden">
-      <div className="container mx-auto">
+    <section id="about" className="py-32 bg-white relative overflow-hidden">
+      <div className="site-container">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

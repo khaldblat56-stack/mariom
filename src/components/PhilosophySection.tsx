@@ -8,8 +8,8 @@ export function PhilosophySection() {
   const { t } = useTranslation();
 
   return (
-    <section id="philosophy" className="py-40 px-6 bg-white overflow-hidden">
-      <div className="container mx-auto">
+    <section id="philosophy" className="py-40 bg-white overflow-hidden">
+      <div className="site-container">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

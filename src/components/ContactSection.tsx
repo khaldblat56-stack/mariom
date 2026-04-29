@@ -60,8 +60,8 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-32 px-6 bg-brand-yellow relative rounded-t-[4rem]">
-      <div className="container mx-auto">
+    <section id="contact" className="py-32 bg-brand-yellow relative rounded-t-[4rem]">
+      <div className="site-container">
         <div className="max-w-5xl mx-auto text-center flex flex-col gap-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
