@@ -44,7 +44,7 @@ export function ServicesSection() {
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.12 }}
                 whileHover={{ y: -10 }}
-                className="p-10 rounded-[2.5rem] bg-white shadow-xl shadow-brand-cyan/5 border border-brand-cyan/10 transition-all flex gap-8 items-start group"
+                className="p-10 rounded-[2.5rem] bg-white shadow-xl shadow-brand-cyan/5 border border-brand-cyan/10 transition-all flex flex-col gap-8 items-start group md:flex-row"
               >
                 <div className="bg-brand-cyan/10 p-5 rounded-2xl group-hover:bg-brand-cyan transition-colors shrink-0">
                   <service.icon className="w-10 h-10 text-brand-cyan group-hover:text-white" />
@@ -59,23 +59,24 @@ export function ServicesSection() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.12 }}
-            className="hidden lg:block relative"
-          >
-            <div className="absolute inset-0 bg-brand-cyan h-[80%] my-auto -rotate-3 rounded-[3rem] -z-10" />
-            <Image
-              src="/third.png"
-              alt={t("services.imageAlt")}
-              width={2754}
-              height={1536}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="w-full rounded-[3rem] shadow-2xl relative z-10"
-            />
-          </motion.div>
+ <motion.div
+  initial={{ opacity: 0, scale: 0.95 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  viewport={{ once: true, amount: 0.3 }}
+  transition={{ duration: 0.75, ease: "easeOut", delay: 0.12 }}
+  className="hidden lg:block relative isolate"
+>
+  <div className="absolute inset-0 bg-brand-cyan h-[80%] my-auto -rotate-3 rounded-[3rem] -z-10" />
+  <Image
+    src="/third.png"
+    alt={t("services.imageAlt")}
+    width={2754}
+    height={1536}
+    sizes="(min-width: 1024px) 50vw, 100vw"
+    className="w-full rounded-[3rem] shadow-2xl relative z-10"
+  />
+</motion.div>
+
         </div>
       </div>
     </section>

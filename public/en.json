@@ -9,7 +9,7 @@
     "services": "Services",
     "philosophy": "My Philosophy",
     "book": "Book a Session",
-    "translate": "عربي",
+    "translate": "ع",
     "translateAria": "Translate the website to Arabic"
   },
   "loading": {
@@ -72,6 +72,30 @@
     "description": "I will contact you so we can define the first steps of change together.",
     "whatsapp": "Contact via WhatsApp",
     "booking": "Booking Form",
+    "form": {
+      "name": "Full name",
+      "namePlaceholder": "Your name",
+      "phone": "Phone number",
+      "phonePlaceholder": "+968 ...",
+      "service": "Service needed",
+      "servicePlaceholder": "Choose the right service",
+      "services": {
+        "strategy": "Strategic consulting session",
+        "brand": "Brand building and foundation",
+        "audit": "Marketing audit and performance review"
+      },
+      "project": "Project or brand name",
+      "projectPlaceholder": "Tell me what you are building",
+      "challenge": "Current challenge",
+      "challengePlaceholder": "What do you need clarity on?",
+      "submit": "Send booking request",
+      "sending": "Sending...",
+      "success": "Your request was sent successfully. I will contact you soon.",
+      "setupSuccess": "Your request is ready. Add the email setup values to send it automatically.",
+      "error": "Something went wrong. Please try again or contact me on WhatsApp.",
+      "close": "Close booking form",
+      "whatsappIntro": "Hello Maryam, I would like to book a consulting session."
+    },
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
     "x": "X",

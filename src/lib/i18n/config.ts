@@ -32,7 +32,7 @@ export async function loadLocaleResources(locale: Locale): Promise<Resource[stri
     return cachedResource;
   }
 
-  const response = await fetch(`/api/translations/${locale}`, { cache: "no-store" });
+  const response = await fetch(`/${locale}.json`, { cache: "no-store" });
 
   if (!response.ok) {
     throw new Error(`Unable to load ${locale} translations`);
