@@ -10,6 +10,8 @@
   --color-brand-dark: #1a1a1a;
 }
 
+
+
 @layer base {
   * {
     scrollbar-color: var(--color-brand-cyan) rgba(0, 135, 138, 0.1);
