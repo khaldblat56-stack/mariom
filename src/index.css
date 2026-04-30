@@ -10,14 +10,16 @@
   --color-brand-dark: #1a1a1a;
 }
 
+
+
 @layer base {
   * {
-    scrollbar-color: var(--color-brand-cyan) rgba(0, 135, 138, 0.1);
+    scrollbar-color: var(--color-brand-cyan) #ffffff;
   }
 
   *::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
+    height: 2px;
+    width: 2px;
   }
 
   *::-webkit-scrollbar-button,
@@ -32,7 +34,7 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: rgba(0, 135, 138, 0.1);
+    background: #ffffff;
   }
 
   *::-webkit-scrollbar-thumb {
@@ -43,11 +45,21 @@
   body {
     @apply font-sans bg-white text-brand-dark overflow-x-hidden;
   }
+
+  button:not(:disabled),
+  a[href],
+  [role="button"] {
+    cursor: pointer;
+  }
 }
 
 @layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-[1650px] px-4 sm:px-6 lg:px-10 xl:px-14;
+  }
+
   .main-content {
-    @apply px-4 sm:px-6 lg:px-10 xl:px-14;
+    @apply mx-auto w-full max-w-[1650px] px-4 sm:px-6 lg:px-10 xl:px-14;
   }
 
   .hero-surface {

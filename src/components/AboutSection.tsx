@@ -8,8 +8,8 @@ export function AboutSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="about" className="py-32 px-6 bg-white relative overflow-hidden">
-      <div className="container mx-auto">
+    <section id="about" className="flex min-h-screen items-center py-32 bg-white relative overflow-hidden">
+      <div className="site-container">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -38,7 +38,7 @@ export function AboutSection() {
           >
             <div className="flex flex-col gap-2">
               <span className="text-brand-cyan font-bold tracking-widest uppercase">{t("about.eyebrow")}</span>
-              <h2 className="text-5xl font-bold font-display text-brand-dark">{t("about.title")}</h2>
+              <h2 className="text-5xl font-bold font-display text-brand-dark lg:text-4xl">{t("about.title")}</h2>
             </div>
 
             <motion.div
@@ -46,7 +46,7 @@ export function AboutSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.35 }}
               transition={{ staggerChildren: 0.12 }}
-              className="space-y-6 text-xl leading-relaxed text-gray-700 font-medium"
+              className="space-y-6 text-xl leading-relaxed text-gray-700 font-medium lg:text-lg"
             >
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
                 {t("about.paragraph1")}

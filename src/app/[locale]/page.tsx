@@ -36,7 +36,7 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
           <ServicesSection />
           <PhilosophySection />
           <ContactSection />
-          <WhatsAppButton phoneNumber="96891933324" />
+          <WhatsAppButton phoneNumber="+96891933324" />
         </MainContent>
       </SmoothScrollProvider>
     </I18nProvider>
