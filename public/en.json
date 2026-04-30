@@ -49,13 +49,13 @@
     ]
   },
   "about": {
-    "eyebrow": "About Maryam",
-    "title": "A Strategic Partner for Your Growth",
+    "eyebrow": "",
+    "title": "About Maryam",
     "imageAlt": "Maryam's journey of expertise and passion",
-    "paragraph1": "Since 2013, I have moved between brand foundation, campaign management, and sales growth, learning how businesses grow from the inside, not only from the surface.",
+    "paragraph1": "Since 2013, I have moved between brand foundation, campaign management, and sales growth.",
     "paragraph2Start": "In 2019, I founded",
     "company": "Creativity Company",
-    "paragraph2End": "as a home for creativity and integrated marketing solutions.",
+    "paragraph2End": "as a home for creativity.",
     "paragraph3Start": "Today, I dedicate my expertise as a",
     "partner": "\"strategic partner\"",
     "paragraph3End": "for business owners, helping identify what is holding the project back and map a clear route toward success.",
@@ -67,26 +67,26 @@
     "items": [
       {
         "title": "Strategic Consulting",
-        "desc": "A precise diagnosis of your project and a clear action plan that helps you make marketing and execution decisions with confidence."
+        "desc": "A precise diagnosis of your project and a clear action plan for execution."
       },
       {
         "title": "Brand Foundation",
-        "desc": "I help build a complete brand from research to launch, with a clear identity and a market position designed to grow."
+        "desc": "I help build a complete brand from research to launch."
       },
       {
         "title": "Marketing Efficiency Growth",
-        "desc": "A comprehensive review of your current work to uncover opportunities for stronger sales productivity and better marketing impact."
+        "desc": "A comprehensive review of your current work and a path to multiply sales productivity."
       }
     ]
   },
   "philosophy": {
     "title": "My Philosophy",
-    "subtitle": "Clarity First",
+    "subtitle": "The goal is not to increase marketing noise, but to work intelligently.",
     "body": "The goal is not to create more marketing \"noise\", but to work smarter and focus effort where it creates real impact.",
     "problemTitle": "Transparency",
-    "problemBody": "We face challenges honestly so we know where the solution begins.",
+    "problemBody": "We face challenges honestly.",
     "opportunityTitle": "Methodology",
-    "opportunityBody": "We capture opportunities with clarity and organized steps that can be executed.",
+    "opportunityBody": "We capture opportunities with clarity.",
     "closing": "Results: the right work is more valuable than endless attempts."
   },
   "contact": {

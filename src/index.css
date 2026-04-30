@@ -46,6 +46,10 @@
     @apply font-sans bg-white text-brand-dark overflow-x-hidden;
   }
 
+  .locale-font-ar * {
+    font-family: inherit !important;
+  }
+
   button:not(:disabled),
   a[href],
   [role="button"] {

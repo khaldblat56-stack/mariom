@@ -6,13 +6,15 @@ import { LoadingOverlay } from "./LoadingOverlay";
 
 const FADE_DURATION_MS = 300;
 const AUTO_DISMISS_MS = 900;
+const INTRO_SEEN_STORAGE_KEY = "mriom-loading-intro-seen";
 
 export function LoadingIntro() {
   const { t } = useTranslation();
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMounted, setIsMounted] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const dismiss = useCallback(() => {
+    window.sessionStorage.setItem(INTRO_SEEN_STORAGE_KEY, "true");
     setIsVisible(false);
     window.setTimeout(() => {
       document.documentElement.dataset.loadingIntro = "done";
@@ -21,6 +23,21 @@ export function LoadingIntro() {
   }, []);
 
   useEffect(() => {
+    if (window.sessionStorage.getItem(INTRO_SEEN_STORAGE_KEY) === "true") {
+      document.documentElement.dataset.loadingIntro = "done";
+      return;
+    }
+
+    setIsVisible(true);
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) {
+      document.documentElement.dataset.loadingIntro = "done";
+      return;
+    }
+
     const events = ["mousemove", "click", "touchstart", "keydown"] as const;
     const timer = window.setTimeout(dismiss, AUTO_DISMISS_MS);
 
@@ -35,7 +52,7 @@ export function LoadingIntro() {
       events.forEach((event) => window.removeEventListener(event, dismiss));
       document.documentElement.dataset.loadingIntro = "done";
     };
-  }, [dismiss]);
+  }, [dismiss, isMounted]);
 
   if (!isMounted) {
     return null;

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export function AboutSection() {
   const { t } = useTranslation();
+  const eyebrow = t("about.eyebrow");
 
   return (
     <section id="about" className="flex min-h-screen items-center py-32 bg-white relative overflow-hidden">
@@ -37,7 +38,9 @@ export function AboutSection() {
             className="flex flex-col gap-8 order-1 lg:order-2"
           >
             <div className="flex flex-col gap-2">
-              <span className="text-brand-cyan font-bold tracking-widest uppercase">{t("about.eyebrow")}</span>
+              {eyebrow ? (
+                <span className="text-brand-cyan font-bold tracking-widest uppercase">{eyebrow}</span>
+              ) : null}
               <h2 className="text-5xl font-bold font-display text-brand-dark lg:text-4xl">{t("about.title")}</h2>
             </div>
 
@@ -59,12 +62,7 @@ export function AboutSection() {
                 {t("about.paragraph3Start")} <span className="text-brand-cyan">{t("about.partner")}</span>{" "}
                 {t("about.paragraph3End")}
               </motion.p>
-              <motion.p
-                variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
-                className="bg-brand-dark text-white p-8 rounded-3xl border-r-8 border-brand-yellow"
-              >
-                {t("about.highlight")}
-              </motion.p>
+   
             </motion.div>
           </motion.div>
         </div>
