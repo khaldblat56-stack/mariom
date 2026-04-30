@@ -52,7 +52,8 @@ export function AboutSection() {
                 {t("about.paragraph1")}
               </motion.p>
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
-                {t("about.paragraph2Start")} <span className="text-brand-cyan">{t("about.company")}</span>.
+                {t("about.paragraph2Start")} <span className="text-brand-cyan">{t("about.company")}</span>{" "}
+                {t("about.paragraph2End")}
               </motion.p>
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
                 {t("about.paragraph3Start")} <span className="text-brand-cyan">{t("about.partner")}</span>{" "}

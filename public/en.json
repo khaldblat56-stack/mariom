@@ -19,58 +19,81 @@
   },
   "hero": {
     "titleStart": "Maryam",
-    "titleMiddle": "Brand Building",
-    "titleLine": "Identity and",
-    "titleHighlight": "Sustainable Growth",
-    "description": "I guide you through building resilient brands and designing data-led marketing plans that create measurable results.",
-    "cta": "Book your consulting session now",
+    "titleMiddle": "Smart Strategies",
+    "titleLine": "for Brand",
+    "titleHighlight": "Growth",
+    "description": "I help build strong identities and design marketing plans that deliver tangible results and real market expansion.",
+    "cta": "Book your consulting session",
     "imageAlt": "Maryam - marketing consulting"
   },
+  "stats": {
+    "eyebrow": "The Numbers",
+    "title": "Experience and results at a glance",
+    "items": [
+      {
+        "value": "+13",
+        "label": "years of professional experience"
+      },
+      {
+        "value": "+265",
+        "label": "one-on-one marketing consultations"
+      },
+      {
+        "value": "+68",
+        "label": "projects supported toward success"
+      },
+      {
+        "value": "91%",
+        "label": "client satisfaction rate"
+      }
+    ]
+  },
   "about": {
-    "eyebrow": "Journey and Expertise",
-    "title": "A Journey of Expertise and Passion",
+    "eyebrow": "About Maryam",
+    "title": "A Strategic Partner for Your Growth",
     "imageAlt": "Maryam's journey of expertise and passion",
-    "paragraph1": "My professional journey began in 2013, where I refined my skills in leading companies across integrated fields including identity design, digital marketing, and search engine optimization (SEO).",
-    "paragraph2Start": "Over those years, I closely witnessed what makes brands rise, and why they stumble despite having resources. In 2019, I crowned that experience by founding",
+    "paragraph1": "Since 2013, I have moved between brand foundation, campaign management, and sales growth, learning how businesses grow from the inside, not only from the surface.",
+    "paragraph2Start": "In 2019, I founded",
     "company": "Creativity Company",
-    "paragraph3Start": "Over time, I realized that ambitious business owners are not looking for just an execution agency. They need a",
+    "paragraph2End": "as a home for creativity and integrated marketing solutions.",
+    "paragraph3Start": "Today, I dedicate my expertise as a",
     "partner": "\"strategic partner\"",
-    "paragraph3End": "who understands their vision and guides them honestly toward the right path.",
-    "highlight": "That is why today I offer marketing consulting with an approach built on simplicity, transparency, and practical methodology."
+    "paragraph3End": "for business owners, helping identify what is holding the project back and map a clear route toward success.",
+    "highlight": "My approach is practical and free from unnecessary complexity, connecting vision to execution and turning challenges into measurable next steps."
   },
   "services": {
-    "title": "Specialized Services",
+    "title": "My Services",
     "imageAlt": "Providing consulting services",
     "items": [
       {
-        "title": "Strategic Consulting Sessions",
-        "desc": "We analyze your project reality, identify gaps, and draw an actionable plan that enables you to lead your team or work with execution partners with full clarity."
+        "title": "Strategic Consulting",
+        "desc": "A precise diagnosis of your project and a clear action plan that helps you make marketing and execution decisions with confidence."
       },
       {
-        "title": "Brand Building and Foundation",
-        "desc": "We design an identity that reflects your values and reaches your target audience with precision. The journey starts with market research and ends with a complete visual and strategic brand launch."
+        "title": "Brand Foundation",
+        "desc": "I help build a complete brand from research to launch, with a clear identity and a market position designed to grow."
       },
       {
-        "title": "Marketing Audit and Performance Review",
-        "desc": "A comprehensive review of your current efforts, with practical recommendations to improve the sales funnel and raise marketing productivity."
+        "title": "Marketing Efficiency Growth",
+        "desc": "A comprehensive review of your current work to uncover opportunities for stronger sales productivity and better marketing impact."
       }
     ]
   },
   "philosophy": {
-    "title": "My Work Philosophy",
-    "subtitle": "Clarity Before Execution",
-    "body": "I believe in complete clarity and staying away from verbal complexity. My goal is not to create more marketing noise, but to direct effort toward channels that deliver real return.",
-    "problemTitle": "If we find a gap",
-    "problemBody": "We face it with transparency and complete honesty to reach the most suitable solution.",
-    "opportunityTitle": "If we spot an opportunity",
-    "opportunityBody": "We seize it through an organized methodology that ensures the highest possible value.",
-    "closing": "The goal is not more work, but more precise achievement."
+    "title": "My Philosophy",
+    "subtitle": "Clarity First",
+    "body": "The goal is not to create more marketing \"noise\", but to work smarter and focus effort where it creates real impact.",
+    "problemTitle": "Transparency",
+    "problemBody": "We face challenges honestly so we know where the solution begins.",
+    "opportunityTitle": "Methodology",
+    "opportunityBody": "We capture opportunities with clarity and organized steps that can be executed.",
+    "closing": "Results: the right work is more valuable than endless attempts."
   },
   "contact": {
-    "titleLine1": "Share your project details,",
-    "titleLine2": "and the challenges you are facing...",
-    "description": "I will contact you so we can define the first steps of change together.",
-    "whatsapp": "Contact via WhatsApp",
+    "titleLine1": "Tell me about",
+    "titleLine2": "your project challenges",
+    "description": "I will get back to you with practical steps we can start immediately.",
+    "whatsapp": "WhatsApp",
     "booking": "Booking Form",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
