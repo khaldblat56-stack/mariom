@@ -15,11 +15,13 @@ export function ContactSection() {
   const { setScrollLocked } = useSmoothScroll();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "setup" | "error">("idle");
+  const [showSuccessBadge, setShowSuccessBadge] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const openForm = () => {
       setSubmitStatus("idle");
+      setShowSuccessBadge(false);
       setIsBookingOpen(true);
     };
 
@@ -60,11 +62,24 @@ export function ContactSection() {
     };
   }, [isBookingOpen, setScrollLocked]);
 
+  useEffect(() => {
+    if (!showSuccessBadge) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setShowSuccessBadge(false);
+    }, 4500);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [showSuccessBadge]);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitStatus("sending");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     try {
       const response = await fetch("/api/contact", {
@@ -80,15 +95,19 @@ export function ContactSection() {
         }),
       });
 
-      const result = (await response.json()) as { ok?: boolean; email?: { sent?: boolean; configured?: boolean } };
+      const result = (await response
+        .json()
+        .catch(() => null)) as { ok?: boolean; email?: { sent?: boolean; configured?: boolean } } | null;
 
-      if (!response.ok || !result.ok) {
+      if (!response.ok || result?.ok === false) {
         setSubmitStatus("error");
         return;
       }
 
-      event.currentTarget.reset();
-      setSubmitStatus(result.email?.sent ? "success" : "setup");
+      form.reset();
+      setSubmitStatus(result?.email?.configured === false ? "setup" : "success");
+      setShowSuccessBadge(true);
+      setIsBookingOpen(false);
     } catch {
       setSubmitStatus("error");
     }
@@ -170,6 +189,21 @@ export function ContactSection() {
           </motion.div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {showSuccessBadge ? (
+          <motion.div
+            className="fixed bottom-6 left-1/2 z-[1100] max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-full bg-brand-cyan px-6 py-4 text-center text-base font-bold text-white shadow-2xl shadow-brand-cyan/30"
+            initial={{ opacity: 0, y: 18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 18, scale: 0.96 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            role="status"
+          >
+            {submitStatus === "setup" ? t("contact.form.setupSuccess") : t("contact.form.success")}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isBookingOpen ? (

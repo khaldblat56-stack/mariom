@@ -99,7 +99,7 @@
       "name": "Full name",
       "namePlaceholder": "Your name",
       "phone": "Phone number",
-      "phonePlaceholder": "+968 ...",
+      "phonePlaceholder": "+9XX ...",
       "service": "Service needed",
       "servicePlaceholder": "Choose the right service",
       "services": {
