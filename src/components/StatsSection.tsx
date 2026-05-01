@@ -78,9 +78,7 @@ export function StatsSection() {
                 {t("stats.eyebrow")}
               </span>
             </div>
-            <h2 className="mt-5 text-4xl font-bold leading-tight font-display text-brand-dark md:text-5xl">
-              {t("stats.title")}
-            </h2>
+      
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

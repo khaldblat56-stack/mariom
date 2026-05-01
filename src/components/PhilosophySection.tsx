@@ -19,7 +19,7 @@ export function PhilosophySection() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl font-bold font-display text-brand-dark mb-6 lg:text-4xl">{t("philosophy.title")}</h2>
-            <h3 className="text-3xl text-brand-cyan font-bold lg:text-2xl">{t("philosophy.subtitle")}</h3>
+            {/* <h3 className="text-3xl text-brand-cyan font-bold lg:text-2xl">{t("philosophy.subtitle")}</h3> */}
           </motion.div>
 
           <motion.div

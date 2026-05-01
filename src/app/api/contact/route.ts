@@ -81,6 +81,52 @@ function createEmailMessage(details: ContactDetails, from: string, to: string) {
 
 type SmtpClient = net.Socket | tls.TLSSocket;
 
+class SmtpError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "SmtpError";
+  }
+}
+
+function createDebugId() {
+  return `contact-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function formatError(error: unknown) {
+  if (error instanceof Error) {
+    return {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    };
+  }
+
+  return { message: String(error) };
+}
+
+function getResponseDebug(error: unknown) {
+  if (process.env.NODE_ENV === "production") {
+    return undefined;
+  }
+
+  return {
+    error: formatError(error),
+    smtp: getSmtpConfigDebugInfo(),
+  };
+}
+
+function redactSmtpCommand(command: string) {
+  if (/^AUTH\b/i.test(command)) {
+    return "AUTH <redacted>";
+  }
+
+  if (!command.includes(" ")) {
+    return "<redacted>";
+  }
+
+  return command;
+}
+
 function readSmtpResponse(socket: SmtpClient) {
   return new Promise<string>((resolve, reject) => {
     let response = "";
@@ -116,7 +162,11 @@ async function sendSmtpCommand(socket: SmtpClient, command: string, expectedCode
   const response = await readSmtpResponse(socket);
 
   if (!expectedCodes.some((code) => response.startsWith(code))) {
-    throw new Error(`SMTP command failed: ${command}`);
+    throw new SmtpError(
+      `SMTP command failed: ${redactSmtpCommand(command)}. Expected ${expectedCodes.join(
+        ", "
+      )}, received: ${response.trim()}`
+    );
   }
 
   return response;
@@ -156,12 +206,36 @@ function getSmtpConfig() {
   return { host, port, user, password, recipient, from };
 }
 
-async function sendSmtpEmail(details: ContactDetails) {
+function getSmtpConfigDebugInfo() {
+  return {
+    hasHost: Boolean(process.env.SMTP_HOST),
+    port: process.env.SMTP_PORT || process.env.MTP_PORT || "587",
+    hasUser: Boolean(process.env.SMTP_USER),
+    hasPassword: Boolean(process.env.SMTP_PASSWORD),
+    hasRecipient: Boolean(process.env.RECIPIENT_EMAIL || process.env.CONTACT_TO_EMAIL),
+    hasFrom: Boolean(process.env.CONTACT_FROM_EMAIL || process.env.SMTP_USER),
+  };
+}
+
+async function sendSmtpEmail(details: ContactDetails, debugId: string) {
   const config = getSmtpConfig();
 
   if (!config) {
+    console.warn("[api/contact] SMTP is not fully configured", {
+      debugId,
+      smtp: getSmtpConfigDebugInfo(),
+    });
+
     return { configured: false, sent: false };
   }
+
+  console.info("[api/contact] Sending SMTP email", {
+    debugId,
+    host: config.host,
+    port: config.port,
+    recipient: config.recipient,
+    from: config.from,
+  });
 
   let socket: SmtpClient | null = await connectSmtp(config.host, config.port);
 
@@ -188,6 +262,11 @@ async function sendSmtpEmail(details: ContactDetails) {
       ["250"]
     );
     await sendSmtpCommand(socket, "QUIT", ["221"]);
+
+    console.info("[api/contact] SMTP email sent", {
+      debugId,
+      recipient: config.recipient,
+    });
 
     return { configured: true, sent: true };
   } finally {
@@ -232,15 +311,22 @@ function createEmailHtml(details: ContactDetails) {
 }
 
 export async function POST(request: Request) {
+  const debugId = createDebugId();
   let body: ContactRequest;
 
   try {
     body = await request.json();
-  } catch {
+  } catch (error) {
+    console.error("[api/contact] Invalid JSON request body", {
+      debugId,
+      error: formatError(error),
+    });
+
     return NextResponse.json(
       {
         ok: false,
         code: "INVALID_JSON",
+        debugId,
         message: "Request body must be valid JSON.",
       },
       { status: 400 }
@@ -259,10 +345,16 @@ export async function POST(request: Request) {
   const missingFields = REQUIRED_FIELDS.filter((field) => !details[field]);
 
   if (missingFields.length > 0) {
+    console.warn("[api/contact] Validation failed", {
+      debugId,
+      missingFields,
+    });
+
     return NextResponse.json(
       {
         ok: false,
         code: "VALIDATION_ERROR",
+        debugId,
         message: "Please fill all required fields.",
         errors: missingFields.map((field) => ({ field, message: "Required field." })),
       },
@@ -271,13 +363,26 @@ export async function POST(request: Request) {
   }
 
   try {
-    const email = await sendSmtpEmail(details);
+    console.info("[api/contact] Contact request received", {
+      debugId,
+      service: details.service,
+      locale: details.locale,
+      hasPhone: Boolean(details.phone),
+    });
+
+    const email = await sendSmtpEmail(details, debugId);
 
     if (email.configured && !email.sent) {
+      console.error("[api/contact] Email sending failed without thrown error", {
+        debugId,
+        email,
+      });
+
       return NextResponse.json(
         {
           ok: false,
           code: "EMAIL_SEND_FAILED",
+          debugId,
           message: "The request was valid, but the email could not be sent.",
           email,
         },
@@ -288,6 +393,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       code: "CONTACT_REQUEST_RECEIVED",
+      debugId,
       message: email.sent
         ? "Booking request sent by email."
         : "Booking request received. Configure email environment variables to send emails.",
@@ -301,14 +407,34 @@ export async function POST(request: Request) {
         locale: details.locale,
       },
     });
-  } catch {
+  } catch (error) {
+    const isSmtpError = error instanceof SmtpError;
+
+    console.error("[api/contact] Unexpected contact request failure", {
+      debugId,
+      error: formatError(error),
+      smtp: getSmtpConfigDebugInfo(),
+      request: {
+        service: details.service,
+        locale: details.locale,
+        hasName: Boolean(details.name),
+        hasPhone: Boolean(details.phone),
+        hasProject: Boolean(details.project),
+        hasChallenge: Boolean(details.challenge),
+      },
+    });
+
     return NextResponse.json(
       {
         ok: false,
-        code: "CONTACT_REQUEST_FAILED",
-        message: "Unexpected error while handling the booking request.",
+        code: isSmtpError ? "EMAIL_SEND_FAILED" : "CONTACT_REQUEST_FAILED",
+        debugId,
+        message: isSmtpError
+          ? "The request was valid, but the email could not be sent."
+          : "Unexpected error while handling the booking request.",
+        debug: getResponseDebug(error),
       },
-      { status: 500 }
+      { status: isSmtpError ? 502 : 500 }
     );
   }
 }

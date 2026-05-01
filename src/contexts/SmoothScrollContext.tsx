@@ -9,11 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export interface SmoothScrollContextType {
   lenis: Lenis | null;
+  setScrollLocked: (locked: boolean) => void;
   scrollTo: (target: string | number, options?: { offset?: number; duration?: number }) => void;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextType>({
   lenis: null,
+  setScrollLocked: () => {},
   scrollTo: () => {},
 });
 
@@ -93,8 +95,19 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     }
   };
 
+  const setScrollLocked = (locked: boolean) => {
+    if (!lenisRef.current) return;
+
+    if (locked) {
+      lenisRef.current.stop();
+      return;
+    }
+
+    lenisRef.current.start();
+  };
+
   return (
-    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollTo }}>
+    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, setScrollLocked, scrollTo }}>
       {children}
     </SmoothScrollContext.Provider>
   );
