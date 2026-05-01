@@ -35,9 +35,9 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.75, ease: "easeOut", delay: 0.08 }}
-            className="flex flex-col gap-8 order-1 lg:order-2"
+            className="order-1 flex w-full max-w-[34rem] flex-col gap-8 justify-self-center lg:order-2 lg:justify-self-start"
           >
-            <div className="flex flex-col gap-2">
+            <div className="flex w-full flex-col gap-2">
               {eyebrow ? (
                 <span className="text-brand-cyan font-bold tracking-widest uppercase">{eyebrow}</span>
               ) : null}
@@ -49,7 +49,7 @@ export function AboutSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.35 }}
               transition={{ staggerChildren: 0.12 }}
-              className="space-y-6 text-xl leading-relaxed text-gray-700 font-medium lg:text-lg"
+              className="w-full space-y-6 text-xl leading-relaxed text-gray-700 font-medium lg:text-lg"
             >
               <motion.p variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}>
                 {t("about.paragraph1")}

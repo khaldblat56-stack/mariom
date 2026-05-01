@@ -24,14 +24,14 @@ export function HeroSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative flex flex-col items-center gap-4 text-center sm:gap-5 lg:items-start lg:text-start"
+          className="relative flex w-full max-w-[34rem] flex-col items-center gap-4 justify-self-center text-center sm:gap-5 lg:items-start lg:justify-self-start lg:text-start"
         >
           <div className="pointer-events-none absolute -bottom-8 right-0 h-36 w-full max-w-2xl rounded-full bg-brand-cyan/10 blur-[80px]" />
-          <h1 className="max-w-[22rem] font-display text-[2.35rem] font-bold leading-[1.14] text-brand-dark sm:max-w-none sm:text-5xl md:text-6xl lg:text-5xl lg:leading-tight">
+          <h1 className="w-full font-display text-[2.35rem] font-bold leading-[1.14] text-brand-dark sm:text-5xl md:text-6xl lg:text-5xl lg:leading-tight">
             {t("hero.titleStart")} <span className="text-brand-cyan">|</span> {t("hero.titleMiddle")} <br />
             {t("hero.titleLine")} <span className="text-brand-cyan">{t("hero.titleHighlight")}</span>
           </h1>
-          <p className="max-w-[34rem] text-lg font-medium leading-relaxed text-gray-600 sm:text-xl md:text-2xl lg:text-xl">
+          <p className="w-full text-lg font-medium leading-relaxed text-gray-600 sm:text-xl md:text-2xl lg:text-xl">
             {t("hero.description")}
           </p>
 
