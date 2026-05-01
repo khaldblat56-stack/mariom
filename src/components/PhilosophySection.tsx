@@ -12,13 +12,18 @@ export function PhilosophySection() {
       <div className="site-container">
         <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.45 }}
-            transition={{ duration: 0.65, ease: "easeOut" }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-bold font-display text-brand-dark mb-6 lg:text-4xl">{t("philosophy.title")}</h2>
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="flex flex-col items-center text-center gap-6 mb-20"
+        >
+
+                <h2 className="font-display text-4xl font-bold text-brand-dark sm:text-5xl lg:text-4xl xl:text-5xl">
+              {t("philosophy.title")}
+              </h2>
+                <span aria-hidden className="block h-1.5 w-20 rounded-full bg-brand-cyan" />
+          
             {/* <h3 className="text-3xl text-brand-cyan font-bold lg:text-2xl">{t("philosophy.subtitle")}</h3> */}
           </motion.div>
 

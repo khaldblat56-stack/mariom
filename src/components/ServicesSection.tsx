@@ -30,7 +30,8 @@ export function ServicesSection() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="flex flex-col items-center text-center gap-6 mb-20"
         >
-          <h2 className="text-5xl font-bold font-display text-brand-dark lg:text-4xl">{t("services.title")}</h2>
+                <h2 className="font-display text-4xl font-bold text-brand-dark sm:text-5xl lg:text-4xl xl:text-5xl">
+            {t("services.title")}</h2>
           <div className="w-24 h-1.5 bg-brand-cyan rounded-full" />
         </motion.div>
 
