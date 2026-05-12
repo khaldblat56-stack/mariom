@@ -2,13 +2,56 @@
 
 import { Calendar, Phone, Send, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import type { FormEvent } from "react";
+import type { FormEvent, SVGProps } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSmoothScroll } from "@/contexts/SmoothScrollContext";
 import { OPEN_BOOKING_FORM_EVENT } from "@/lib/booking";
 
 const WHATSAPP_PHONE_NUMBER = "+96891933324";
+const SOCIAL_LINKS = [
+  {
+    labelKey: "contact.instagram",
+    href: "https://www.instagram.com/mariam_wajeh/",
+    Icon: InstagramIcon,
+  },
+  {
+    labelKey: "contact.linkedin",
+    href: "https://www.linkedin.com/in/mariamwajeh/?skipRedirect=true",
+    Icon: LinkedinIcon,
+  },
+  {
+    labelKey: "contact.facebook",
+    href: "https://www.facebook.com/mari.waj",
+    Icon: FacebookIcon,
+  },
+] as const;
+
+function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+    </svg>
+  );
+}
+
+function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M6.94 8.98H3.85v10.14h3.09V8.98ZM5.39 4.88a1.78 1.78 0 1 0 0 3.56 1.78 1.78 0 0 0 0-3.56Zm13.76 8.44c0-3.06-1.64-4.48-3.83-4.48a3.3 3.3 0 0 0-2.98 1.64h-.04v-1.5H9.34v10.14h3.09v-5.02c0-1.32.25-2.6 1.89-2.6 1.61 0 1.63 1.51 1.63 2.68v4.94h3.09v-5.8h.11Z" />
+    </svg>
+  );
+}
+
+function FacebookIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M14.17 8.58V6.92c0-.8.39-1.19 1.25-1.19h1.44V3.12A19.5 19.5 0 0 0 14.76 3c-2.08 0-3.5 1.27-3.5 3.59v1.99H8.91v2.92h2.35V21h2.88v-9.5h2.39l.38-2.92h-2.74Z" />
+    </svg>
+  );
+}
 
 export function ContactSection() {
   const { t, i18n } = useTranslation();
@@ -171,19 +214,23 @@ export function ContactSection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
             className="pt-24 border-t border-brand-dark/10 flex flex-col md:flex-row justify-between items-center gap-8 text-brand-dark"
           >
-            <div className="text-3xl font-bold lg:text-2xl">
+            {/* <div className="text-3xl font-bold lg:text-2xl">
               {t("brand.name")} <span className="text-brand-cyan">|</span> {t("brand.growthExpert")}
-            </div>
-            <div className="flex gap-10 text-xl font-bold lg:text-lg">
-              <a href="#" className="hover:text-brand-cyan transition-colors">
-                {t("contact.instagram")}
-              </a>
-              <a href="#" className="hover:text-brand-cyan transition-colors">
-                {t("contact.linkedin")}
-              </a>
-              <a href="#" className="hover:text-brand-cyan transition-colors">
-                {t("contact.x")}
-              </a>
+            </div> */}
+            <div className="flex flex-wrap justify-center gap-10 text-xl font-bold lg:text-lg">
+              {SOCIAL_LINKS.map(({ href, labelKey, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t(labelKey)}
+                  title={t(labelKey)}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand-dark/15 transition-colors hover:border-brand-cyan hover:bg-white/40 hover:text-brand-cyan"
+                >
+                  <Icon className="h-6 w-6" />
+                </a>
+              ))}
             </div>
             <p className="font-medium opacity-60">© {new Date().getFullYear()} {t("contact.rights")}</p>
           </motion.div>

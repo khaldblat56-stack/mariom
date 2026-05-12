@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { LoadingIntro } from "@/components/LoadingIntro";
 import { MainContent } from "@/components/MainContent";
 import { Navbar } from "@/components/Navbar";
+import PartnersSlider from "@/components/PartnersSlider/PartnersSlider";
 import { PhilosophySection } from "@/components/PhilosophySection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { StatsSection } from "@/components/StatsSection";
@@ -32,6 +33,7 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
           <Navbar />
           <HeroSection />
           <StatsSection />
+          <PartnersSlider />
           <AboutSection />
           <ServicesSection />
           <PhilosophySection />

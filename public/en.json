@@ -48,6 +48,9 @@
       }
     ]
   },
+  "partnersSlider": {
+    "heading": "Trusted by brands and organizations"
+  },
   "about": {
     "eyebrow": "",
     "title": "About Maryam",
@@ -121,7 +124,7 @@
     },
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
-    "x": "X",
+    "facebook": "Facebook",
     "rights": "All rights reserved"
   }
 }

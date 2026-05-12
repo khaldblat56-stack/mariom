@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { isSupportedLocale, SUPPORTED_LOCALES } from "@/lib/i18n/config";
@@ -19,6 +20,102 @@ const expoArabic = localFont({
   display: "swap",
 });
 
+const siteUrl = "https://mariamw.com";
+
+const seo = {
+  ar: {
+    title: "مريم وجيه الأعور | مستشار تسويق رقمي وحملات إعلانية ممولة",
+    description:
+      "مستشارة تسويق رقمي بخبرة 10+ سنوات في إدارة حملات إعلانية ممولة لأكثر من 20 جمعية خيرية ومؤسسة تجارية. متخصصة في ميتا ادز، جوجل ادز والتسويق بالذكاء الاصطناعي.",
+    longDescription:
+      "مريم وجيه الأعور - مستشارة تسويق رقمي بأكثر من 10 سنوات خبرة عملية بين فلسطين والمملكة العربية السعودية وسلطنة عمان. متخصصة في إدارة الحملات الإعلانية الممولة على نطاق واسع، مع تركيز على القطاع الخيري حيث تدير حاليا حملات لأكثر من 20 جمعية خيرية في منطقة الخليج. خبيرة في منصات ميتا، جوجل ادز، يوتيوب، سناب شات وتيك توك، مع دمج ذكي لأدوات الذكاء الاصطناعي في إنتاج المحتوى الإبداعي وتحسين أداء الحملات.",
+    keywords: [
+      "مستشار تسويق رقمي",
+      "استشارات تسويق",
+      "حملات إعلانية ممولة",
+      "تسويق رقمي للجمعيات الخيرية",
+      "خبير ميتا ادز",
+      "إدارة حملات فيسبوك وإنستغرام",
+      "تسويق رقمي السعودية",
+      "تسويق رقمي عمان",
+      "خبير حملات إعلانية الخليج",
+      "تسويق بالذكاء الاصطناعي",
+      "مدرب تسويق رقمي",
+      "مريم وجيه الأعور",
+      "مريم وجيه",
+    ],
+    path: "/ar",
+    ogLocale: "ar_SA",
+    ogImage: "/hero.png",
+  },
+  en: {
+    title: "Mariam Wajeh Alawar | Digital Marketing Consultant & Paid Ads Expert",
+    description:
+      "Digital marketing consultant with 10+ years of experience managing paid ad campaigns for 20+ charities and businesses across the Gulf. Meta Ads, Google Ads & AI-powered marketing.",
+    longDescription:
+      "Mariam Wajeh Alawar is a Digital Marketing Consultant with over 10 years of hands-on experience across Palestine, Saudi Arabia, and Oman. She specializes in large-scale paid advertising campaigns with a strong focus on the charity and nonprofit sector, currently leading campaigns for 20+ charitable organizations across the Gulf. Mariam works across Meta Ads, Google Ads, YouTube, Snapchat, and TikTok, integrating AI tools to elevate creative production and campaign optimization.",
+    keywords: [
+      "digital marketing consultant",
+      "marketing consultant Oman",
+      "paid ads expert",
+      "Meta Ads consultant",
+      "Google Ads expert",
+      "charity marketing consultant",
+      "nonprofit marketing Saudi Arabia",
+      "AI-powered marketing",
+      "Gulf digital marketing",
+      "paid social campaigns",
+      "marketing trainer",
+      "Mariam Wajeh Alawar",
+      "Mariam Wajeh",
+    ],
+    path: "/en",
+    ogLocale: "en_US",
+    ogImage: "/hero.png",
+  },
+} as const;
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isSupportedLocale(locale)) {
+    return {};
+  }
+
+  const localeSeo = seo[locale];
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: localeSeo.title,
+    description: localeSeo.description,
+    keywords: [...localeSeo.keywords],
+    alternates: {
+      canonical: localeSeo.path,
+      languages: {
+        ar: "/ar",
+        en: "/en",
+        "x-default": "/ar",
+      },
+    },
+    openGraph: {
+      title: localeSeo.title,
+      description: localeSeo.description,
+      url: localeSeo.path,
+      siteName: "Mariam Wajeh",
+      type: "website",
+      locale: localeSeo.ogLocale,
+      images: [
+        {
+          url: localeSeo.ogImage,
+          width: 1200,
+          height: 630,
+          alt: locale === "ar" ? "مريم وجيه الأعور" : "Mariam Wajeh Alawar",
+        },
+      ],
+    },
+  };
+}
+
 export function generateStaticParams() {
   return SUPPORTED_LOCALES.map((locale) => ({ locale }));
 }
@@ -36,5 +133,34 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  return <div className={locale === "ar" ? `${expoArabic.className} locale-font-ar` : undefined}>{children}</div>;
+  const localeSeo = seo[locale];
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: locale === "ar" ? "مريم وجيه الأعور" : "Mariam Wajeh Alawar",
+    alternateName: locale === "ar" ? "مريم وجيه" : "Mariam Wajeh",
+    url: `${siteUrl}${localeSeo.path}`,
+    image: `${siteUrl}/hero.png`,
+    jobTitle: locale === "ar" ? "مستشارة تسويق رقمي" : "Digital Marketing Consultant",
+    description: localeSeo.longDescription,
+    knowsAbout:
+      locale === "ar"
+        ? ["التسويق الرقمي", "الحملات الإعلانية الممولة", "ميتا ادز", "جوجل ادز", "التسويق بالذكاء الاصطناعي"]
+        : ["Digital marketing", "Paid ad campaigns", "Meta Ads", "Google Ads", "AI-powered marketing"],
+    sameAs: [
+      "https://www.facebook.com/mari.waj",
+      "https://www.instagram.com/mariam_wajeh/",
+      "https://www.linkedin.com/in/mariamwajeh/",
+    ],
+  };
+
+  return (
+    <div className={locale === "ar" ? `${expoArabic.className} locale-font-ar` : undefined}>
+      {children}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+    </div>
+  );
 }
