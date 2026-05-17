@@ -88,6 +88,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     metadataBase: new URL(siteUrl),
     title: localeSeo.title,
     description: localeSeo.description,
+    icons: {
+      icon: "/icon.svg",
+    },
     keywords: [...localeSeo.keywords],
     alternates: {
       canonical: localeSeo.path,

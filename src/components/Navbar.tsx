@@ -1,6 +1,7 @@
 "use client";
 
 import { type MouseEvent, useEffect, useState } from "react";
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { Languages, Menu, X } from "lucide-react";
 import { useSmoothScroll } from "@/contexts/SmoothScrollContext";
@@ -54,11 +55,20 @@ export function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className={`site-container flex items-center justify-between gap-4 transition-all duration-300 ${isScrolled ? "py-3" : "py-4"}`}>
-        <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1 text-xl font-bold text-brand-cyan sm:text-2xl">
+      <nav className={`site-container flex items-center justify-between gap-4 transition-all duration-300 ${isScrolled ? "py-2 " : "py-4"}`}>
+        <div className="flex items-center gap-3">
+          <Image
+            src="/icon.svg"
+            alt=""
+            width={40}
+            height={40}
+            className="h-20 w-20 shrink-0"
+            unoptimized
+            priority
+          />
+          {/* <span className="flex items-center gap-1 text-xl font-bold text-brand-cyan sm:text-2xl">
             {t("brand.name")} <span className="text-brand-yellow font-normal">| {t("brand.consulting")}</span>
-          </span>
+          </span> */}
         </div>
         <div className="hidden md:flex gap-8 font-medium">
           {navItems.map((item) => (

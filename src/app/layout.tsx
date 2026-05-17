@@ -6,6 +6,9 @@ import "../index.css";
 export const metadata: Metadata = {
   title: "مريم | استشارات",
   description: "استشارات تسويقية لبناء الهوية والنمو المستدام.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
