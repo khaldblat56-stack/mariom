@@ -10,8 +10,6 @@ import { PhilosophySection } from "@/components/PhilosophySection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { StatsSection } from "@/components/StatsSection";
 import { WhatsAppButton } from "@/components/whatsapp-button";
-import { SmoothScrollProvider } from "@/contexts/SmoothScrollContext";
-import { I18nProvider } from "@/lib/i18n/I18nProvider";
 import { isSupportedLocale, SUPPORTED_LOCALES } from "@/lib/i18n/config";
 
 export function generateStaticParams() {
@@ -26,21 +24,17 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
   }
 
   return (
-    <I18nProvider initialLocale={locale}>
-      <SmoothScrollProvider>
-        <MainContent>
-          <LoadingIntro />
-          <Navbar />
-          <HeroSection />
-          <StatsSection />
-          <PartnersSlider />
-          <AboutSection />
-          <ServicesSection />
-          <PhilosophySection />
-          <ContactSection />
-          <WhatsAppButton phoneNumber="+96891933324" />
-        </MainContent>
-      </SmoothScrollProvider>
-    </I18nProvider>
+    <MainContent>
+      <LoadingIntro />
+      <Navbar />
+      <HeroSection />
+      <StatsSection />
+      <PartnersSlider />
+      <AboutSection />
+      <ServicesSection />
+      <PhilosophySection />
+      <ContactSection />
+      <WhatsAppButton phoneNumber="+96891933324" />
+    </MainContent>
   );
 }

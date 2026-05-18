@@ -1,3 +1,4 @@
+import "@fontsource-variable/cairo";
 import type { Metadata } from "next";
 import Script from "next/script";
 import type { ReactNode } from "react";
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl">
       <body className="scrollbar">
         {children}
-        <Script id="snapchat-pixel" strategy="afterInteractive">
+        <Script id="snapchat-pixel"   strategy="lazyOnload">
           {`
             (function(e,t,n){
               if(e.snaptr)return;

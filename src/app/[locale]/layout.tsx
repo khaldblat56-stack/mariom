@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { isSupportedLocale, SUPPORTED_LOCALES } from "@/lib/i18n/config";
+import { LocaleProviders } from "./LocaleProviders";
 
 const expoArabic = localFont({
   src: [
@@ -159,7 +160,7 @@ export default async function LocaleLayout({
 
   return (
     <div className={locale === "ar" ? `${expoArabic.className} locale-font-ar` : undefined}>
-      {children}
+      <LocaleProviders locale={locale}>{children}</LocaleProviders>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
