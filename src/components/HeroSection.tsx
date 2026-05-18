@@ -60,7 +60,7 @@ export function HeroSection() {
           <div className="relative z-10 w-full max-w-[420px] sm:max-w-[620px] lg:max-w-[980px] xl:max-w-[1180px]">
             <div className="hero-portrait-glow pointer-events-none absolute inset-x-[-6%] bottom-[-3%] z-0 h-[34%]" />
             <Image
-              src="/hero.png"
+              src="/hero.webp"
               alt={t("hero.imageAlt")}
               width={2754}
               height={1536}
