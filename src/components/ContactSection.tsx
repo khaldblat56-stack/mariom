@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "motion/react";
 import type { FormEvent, SVGProps } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSmoothScroll } from "@/contexts/SmoothScrollContext";
 import { OPEN_BOOKING_FORM_EVENT } from "@/lib/booking";
 
 const WHATSAPP_PHONE_NUMBER = "+96891933324";
@@ -55,7 +54,6 @@ function FacebookIcon(props: SVGProps<SVGSVGElement>) {
 
 export function ContactSection() {
   const { t, i18n } = useTranslation();
-  const { setScrollLocked } = useSmoothScroll();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "setup" | "error">("idle");
   const [showSuccessBadge, setShowSuccessBadge] = useState(false);
@@ -82,7 +80,6 @@ export function ContactSection() {
     const { overflow, position, top, width } = document.body.style;
     const htmlOverflow = document.documentElement.style.overflow;
 
-    setScrollLocked(true);
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.body.style.position = "fixed";
@@ -95,7 +92,6 @@ export function ContactSection() {
 
     return () => {
       window.cancelAnimationFrame(frameId);
-      setScrollLocked(false);
       document.documentElement.style.overflow = htmlOverflow;
       document.body.style.overflow = overflow;
       document.body.style.position = position;
@@ -103,7 +99,7 @@ export function ContactSection() {
       document.body.style.width = width;
       window.scrollTo(0, scrollY);
     };
-  }, [isBookingOpen, setScrollLocked]);
+  }, [isBookingOpen]);
 
   useEffect(() => {
     if (!showSuccessBadge) {
@@ -255,7 +251,7 @@ export function ContactSection() {
       <AnimatePresence>
         {isBookingOpen ? (
           <motion.div
-            className="fixed inset-0 z-[1000] flex items-center justify-center bg-brand-dark/70 px-4 py-8 backdrop-blur-sm"
+            className="fixed inset-0 z-[1000] flex min-h-0 items-center justify-center overflow-y-auto overscroll-contain bg-brand-dark/70 px-4 py-8 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -266,7 +262,7 @@ export function ContactSection() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.96 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex max-h-[88vh] w-full max-w-3xl flex-col rounded-[2rem] bg-white p-6 text-start shadow-2xl md:p-8"
+              className="flex max-h-[min(88vh,100dvh)] min-h-0 w-full max-w-3xl flex-col overflow-hidden rounded-[2rem] bg-white p-6 text-start shadow-2xl md:p-8"
             >
               <div className="flex items-center justify-between gap-4">
                 <h3 className="text-2xl font-bold text-brand-dark">{t("contact.booking")}</h3>
@@ -280,7 +276,7 @@ export function ContactSection() {
                 </button>
               </div>
 
-              <div className="mt-5 grid min-h-0 flex-1 gap-5 overflow-y-auto overscroll-contain px-4 md:grid-cols-2">
+              <div className="mt-5 grid min-h-0 flex-1 gap-5 overflow-y-auto overscroll-contain px-4 touch-pan-y md:grid-cols-2">
                 <label className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark">
                   {t("contact.form.name")}
                   <input

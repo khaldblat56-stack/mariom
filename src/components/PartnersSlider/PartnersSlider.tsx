@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 const partners = [
@@ -23,50 +21,18 @@ export default function PartnersSlider() {
 
   const duplicatedPartners = [...partners, ...partners];
 
-  const baseX = useMotionValue(0);
-  const scrollSpeed = -50;
-
-  useAnimationFrame((_t, delta) => {
-    const moveBy = (scrollSpeed * delta) / 1000;
-    baseX.set(baseX.get() + moveBy);
-  });
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const itemWidth = 200;
-  const totalWidth = partners.length * itemWidth;
-
-  useEffect(() => {
-    const unsubscribe = baseX.on("change", (latest) => {
-      if (latest <= -totalWidth) {
-        baseX.set(0);
-      }
-    });
-    return () => unsubscribe();
-  }, [baseX, totalWidth]);
-
-  const x = useTransform(baseX, (v) => `${v}px`);
-
   return (
     <section className="overflow-hidden bg-white py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-10 md:mb-12"
-        >
+        <div className="partners-slider-heading text-center mb-8 sm:mb-10 md:mb-12">
           <h2 className="font-display text-3xl font-bold text-brand-dark md:text-5xl">
             {t("partnersSlider.heading")}
           </h2>
-        </motion.div>
+        </div>
 
         <div className="relative" dir="ltr">
-          <div className="overflow-hidden" ref={containerRef}>
-            <motion.div
-              className="flex gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-center will-change-transform"
-              style={{ x, transform: "translateZ(0)" }}
-            >
+          <div className="overflow-hidden">
+            <div className="partners-slider-track flex gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-center">
               {duplicatedPartners.map((partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}
@@ -81,7 +47,7 @@ export default function PartnersSlider() {
                   />
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           <div className="absolute top-0 left-0 h-full w-20 sm:w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />

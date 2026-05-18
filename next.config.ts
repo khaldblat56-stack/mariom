@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
-const nextConfig: NextConfig = {};
+const withAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
-export default nextConfig;
+const nextConfig: NextConfig = {
+  experimental: {
+    inlineCss: true,
+  },
+};
+
+export default withAnalyzer(nextConfig);

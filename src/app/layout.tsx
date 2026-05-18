@@ -20,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className="scrollbar">
-        {children}
+        {/* Horizontal clip on a wrapper avoids iOS Safari breaking vertical page scroll when overflow-x-hidden sits on body. */}
+        <div className="min-h-screen overflow-x-clip">{children}</div>
         <Script id="snapchat-pixel"   strategy="lazyOnload">
           {`
             (function(e,t,n){
