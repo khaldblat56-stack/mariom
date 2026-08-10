@@ -102,7 +102,12 @@
       "name": "الاسم الكامل",
       "namePlaceholder": "اكتبوا الاسم",
       "phone": "رقم الهاتف",
-      "phonePlaceholder": "+9XX ...",
+      "phonePlaceholder": "XXXX XXXX",
+      "country": "الدولة",
+      "countryPlaceholder": "الدولة",
+      "countrySearch": "ابحثوا عن الدولة",
+      "countryEmpty": "لا توجد نتائج",
+      "optional": "اختياري",
       "service": "الخدمة المطلوبة",
       "servicePlaceholder": "اختاروا الخدمة المناسبة",
       "services": {

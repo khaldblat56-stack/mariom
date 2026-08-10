@@ -5,7 +5,11 @@ import { AnimatePresence, motion } from "motion/react";
 import type { FormEvent, SVGProps } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { CountrySelect } from "@/components/CountrySelect";
+import { FormSelect } from "@/components/FormSelect";
+import { useSmoothScroll } from "@/contexts/SmoothScrollContext";
 import { OPEN_BOOKING_FORM_EVENT } from "@/lib/booking";
+import { formatPhoneWithCountry, getCountryByCode } from "@/lib/countries";
 
 const WHATSAPP_PHONE_NUMBER = "+96891933324";
 const SOCIAL_LINKS = [
@@ -54,15 +58,31 @@ function FacebookIcon(props: SVGProps<SVGSVGElement>) {
 
 export function ContactSection() {
   const { t, i18n } = useTranslation();
+  const { setScrollLocked } = useSmoothScroll();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "setup" | "error">("idle");
   const [showSuccessBadge, setShowSuccessBadge] = useState(false);
+  const [countryCode, setCountryCode] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [service, setService] = useState("");
   const nameInputRef = useRef<HTMLInputElement>(null);
+  const isArabic = i18n.language.startsWith("ar");
+  const selectedCountry = getCountryByCode(countryCode);
+  const hasPhoneNumber = phoneNumber.trim().replace(/[\s()-]/g, "").length >= 6;
+  const canSubmit = Boolean(selectedCountry) && hasPhoneNumber && submitStatus !== "sending";
+  const serviceOptions = [
+    { value: "strategy", label: t("contact.form.services.strategy") },
+    { value: "brand", label: t("contact.form.services.brand") },
+    { value: "audit", label: t("contact.form.services.audit") },
+  ];
 
   useEffect(() => {
     const openForm = () => {
       setSubmitStatus("idle");
       setShowSuccessBadge(false);
+      setCountryCode("");
+      setPhoneNumber("");
+      setService("");
       setIsBookingOpen(true);
     };
 
@@ -80,6 +100,7 @@ export function ContactSection() {
     const { overflow, position, top, width } = document.body.style;
     const htmlOverflow = document.documentElement.style.overflow;
 
+    setScrollLocked(true);
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.body.style.position = "fixed";
@@ -92,6 +113,7 @@ export function ContactSection() {
 
     return () => {
       window.cancelAnimationFrame(frameId);
+      setScrollLocked(false);
       document.documentElement.style.overflow = htmlOverflow;
       document.body.style.overflow = overflow;
       document.body.style.position = position;
@@ -99,7 +121,7 @@ export function ContactSection() {
       document.body.style.width = width;
       window.scrollTo(0, scrollY);
     };
-  }, [isBookingOpen]);
+  }, [isBookingOpen, setScrollLocked]);
 
   useEffect(() => {
     if (!showSuccessBadge) {
@@ -115,10 +137,18 @@ export function ContactSection() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!selectedCountry || !hasPhoneNumber || !service) {
+      return;
+    }
+
     setSubmitStatus("sending");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const phone = formatPhoneWithCountry(selectedCountry.dialCode, phoneNumber);
+    const selectedService =
+      serviceOptions.find((option) => option.value === service)?.label ?? service;
 
     try {
       const response = await fetch("/api/contact", {
@@ -126,8 +156,8 @@ export function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.get("name"),
-          phone: formData.get("phone"),
-          service: formData.get("service"),
+          phone,
+          service: selectedService,
           project: formData.get("project"),
           challenge: formData.get("challenge"),
           locale: i18n.language,
@@ -144,6 +174,9 @@ export function ContactSection() {
       }
 
       form.reset();
+      setCountryCode("");
+      setPhoneNumber("");
+      setService("");
       setSubmitStatus(result?.email?.configured === false ? "setup" : "success");
       setShowSuccessBadge(true);
       setIsBookingOpen(false);
@@ -193,6 +226,9 @@ export function ContactSection() {
               type="button"
               onClick={() => {
                 setSubmitStatus("idle");
+                setCountryCode("");
+                setPhoneNumber("");
+                setService("");
                 setIsBookingOpen(true);
               }}
               variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
@@ -276,7 +312,10 @@ export function ContactSection() {
                 </button>
               </div>
 
-              <div className="mt-5 grid min-h-0 flex-1 gap-5 overflow-y-auto overscroll-contain px-4 touch-pan-y md:grid-cols-2">
+              <div
+                className="mt-5 grid min-h-0 flex-1 gap-5 overflow-y-auto overscroll-contain px-4 touch-pan-y md:grid-cols-2"
+                onWheel={(event) => event.stopPropagation()}
+              >
                 <label className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark">
                   {t("contact.form.name")}
                   <input
@@ -291,31 +330,42 @@ export function ContactSection() {
 
                 <label className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark">
                   {t("contact.form.phone")}
-                  <input
-                    required
-                    name="phone"
-                    type="tel"
-                    placeholder={t("contact.form.phonePlaceholder")}
-                    className="min-w-0 rounded-2xl border-2 border-brand-dark/10 bg-white px-5 py-4 text-lg font-medium outline-none transition focus:border-brand-cyan"
-                  />
+                  <div className="flex min-w-0 items-stretch overflow-hidden rounded-2xl border-2 border-brand-dark/10 bg-white transition focus-within:border-brand-cyan">
+                    <CountrySelect
+                      value={countryCode}
+                      onChange={setCountryCode}
+                      label={t("contact.form.country")}
+                      placeholder={t("contact.form.countryPlaceholder")}
+                      searchPlaceholder={t("contact.form.countrySearch")}
+                      emptyLabel={t("contact.form.countryEmpty")}
+                      isArabic={isArabic}
+                    />
+                    <input
+                      required
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel-national"
+                      value={phoneNumber}
+                      onChange={(event) => setPhoneNumber(event.target.value)}
+                      placeholder={t("contact.form.phonePlaceholder")}
+                      className="min-w-0 flex-1 rounded-e-2xl bg-transparent px-3 py-4 text-lg font-medium outline-none"
+                    />
+                  </div>
                 </label>
 
-                <label className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark md:col-span-2">
-                  {t("contact.form.service")}
-                  <select
-                    required
+                <div className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark md:col-span-2">
+                  <span>{t("contact.form.service")}</span>
+                  <FormSelect
                     name="service"
-                    defaultValue=""
-                    className="min-w-0 rounded-2xl border-2 border-brand-dark/10 bg-white px-5 py-4 text-lg font-medium outline-none transition focus:border-brand-cyan"
-                  >
-                    <option value="" disabled>
-                      {t("contact.form.servicePlaceholder")}
-                    </option>
-                    <option>{t("contact.form.services.strategy")}</option>
-                    <option>{t("contact.form.services.brand")}</option>
-                    <option>{t("contact.form.services.audit")}</option>
-                  </select>
-                </label>
+                    value={service}
+                    onChange={setService}
+                    options={serviceOptions}
+                    label={t("contact.form.service")}
+                    placeholder={t("contact.form.servicePlaceholder")}
+                    required
+                  />
+                </div>
 
                 <label className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark md:col-span-2">
                   {t("contact.form.project")}
@@ -329,9 +379,11 @@ export function ContactSection() {
                 </label>
 
                 <label className="flex min-w-0 flex-col gap-2 font-bold text-brand-dark md:col-span-2">
-                  {t("contact.form.challenge")}
+                  <span className="flex items-center justify-between gap-3">
+                    {t("contact.form.challenge")}
+                    <span className="text-sm font-medium text-brand-dark/40">{t("contact.form.optional")}</span>
+                  </span>
                   <textarea
-                    required
                     name="challenge"
                     rows={4}
                     placeholder={t("contact.form.challengePlaceholder")}
@@ -343,8 +395,8 @@ export function ContactSection() {
               <div className="mt-5 grid gap-5">
                 <button
                   type="submit"
-                  disabled={submitStatus === "sending"}
-                  className="group flex items-center justify-center gap-3 rounded-full bg-brand-cyan px-8 py-5 text-xl font-bold text-white shadow-xl shadow-brand-cyan/20 transition hover:bg-brand-dark disabled:cursor-wait disabled:opacity-70"
+                  disabled={!canSubmit}
+                  className="group flex items-center justify-center gap-3 rounded-full bg-brand-cyan px-8 py-5 text-xl font-bold text-white shadow-xl shadow-brand-cyan/20 transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-brand-cyan"
                 >
                   {submitStatus === "sending" ? t("contact.form.sending") : t("contact.form.submit")}
                   <Send className="h-5 w-5 transition-transform group-hover:-translate-y-1" />

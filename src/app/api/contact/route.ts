@@ -22,12 +22,11 @@ type ContactDetails = {
   locale: string;
 };
 
-const REQUIRED_FIELDS: Array<keyof Omit<ContactDetails, "locale">> = [
+const REQUIRED_FIELDS: Array<keyof Omit<ContactDetails, "locale" | "challenge">> = [
   "name",
   "phone",
   "service",
   "project",
-  "challenge",
 ];
 
 function normalizeText(value: unknown) {

@@ -102,7 +102,12 @@
       "name": "Full name",
       "namePlaceholder": "Your name",
       "phone": "Phone number",
-      "phonePlaceholder": "+9XX ...",
+      "phonePlaceholder": "XXXX XXXX",
+      "country": "Country",
+      "countryPlaceholder": "Country",
+      "countrySearch": "Search country",
+      "countryEmpty": "No results",
+      "optional": "optional",
       "service": "Service needed",
       "servicePlaceholder": "Choose the right service",
       "services": {
