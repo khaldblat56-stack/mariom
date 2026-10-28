@@ -1,76 +1,249 @@
 "use client";
 
-import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
-import { motion } from "motion/react";
+import { type KeyboardEvent, type PointerEvent, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { openBookingForm } from "@/lib/booking";
+import { Lightbox, type LightboxImage } from "@/components/Lightbox";
+import { SiteLink } from "@/components/SiteLink";
+import { useI18nControls } from "@/lib/i18n/I18nProvider";
+import { getLocaleDirection } from "@/lib/i18n/config";
+import { HERO_RESULT_CARDS, RESULT_IMAGES } from "@/lib/site-content";
+
+const AUTOPLAY_MS = 4200;
+const SWIPE_THRESHOLD_PX = 40;
+
+type HeroCardCopy = { title: string; tiles: string[]; bars: string[]; badge: string };
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 export function HeroSection() {
   const { t } = useTranslation();
+  const { locale } = useI18nControls();
+  const dir = getLocaleDirection(locale);
+  const isRtl = dir === "rtl";
+  /** In RTL the next card sits to the left, so swipes and arrow keys are mirrored. */
+  const forward = isRtl ? 1 : -1;
+
+  const cards = t("hero.cards", { returnObjects: true }) as unknown as HeroCardCopy[];
+  const proofAlts = (t("results.items", { returnObjects: true }) as unknown as { alt: string }[]).map((item) => item.alt);
+  const count = HERO_RESULT_CARDS.length;
+
+  const stageRef = useRef<HTMLDivElement>(null);
+  const dragStartX = useRef<number | null>(null);
+  const [current, setCurrent] = useState(0);
+  const [step, setStep] = useState(170);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isAutoplay, setIsAutoplay] = useState(true);
+  const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(null);
+
+  const go = useCallback((index: number) => setCurrent(((index % count) + count) % count), [count]);
+  const stopAutoplay = useCallback(() => setIsAutoplay(false), []);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+
+    if (!stage) {
+      return;
+    }
+
+    const measure = () => setStep(Math.min(170, stage.clientWidth * 0.2));
+    measure();
+    window.addEventListener("resize", measure);
+
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  useEffect(() => {
+    if (!isAutoplay || prefersReducedMotion()) {
+      return;
+    }
+
+    const timer = window.setInterval(() => setCurrent((value) => (value + 1) % count), AUTOPLAY_MS);
+
+    return () => window.clearInterval(timer);
+  }, [count, isAutoplay]);
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    dragStartX.current = event.clientX;
+    setIsDragging(true);
+  };
+
+  useEffect(() => {
+    if (!isDragging) {
+      return;
+    }
+
+    const handlePointerUp = (event: globalThis.PointerEvent) => {
+      const startX = dragStartX.current;
+      dragStartX.current = null;
+      setIsDragging(false);
+
+      if (startX === null) {
+        return;
+      }
+
+      const dx = event.clientX - startX;
+
+      if (Math.abs(dx) > SWIPE_THRESHOLD_PX) {
+        setCurrent((value) => (((value + (dx > 0 ? forward : -forward)) % count) + count) % count);
+        stopAutoplay();
+      }
+    };
+
+    window.addEventListener("pointerup", handlePointerUp);
+
+    return () => window.removeEventListener("pointerup", handlePointerUp);
+  }, [count, forward, isDragging, stopAutoplay]);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      go(current + forward);
+      stopAutoplay();
+    } else if (event.key === "ArrowRight") {
+      go(current - forward);
+      stopAutoplay();
+    }
+  };
+
+  const openProof = (proof: number) => {
+    const image = RESULT_IMAGES[proof];
+    setLightboxImage({ src: image.src, alt: proofAlts[proof] ?? "" });
+    stopAutoplay();
+  };
 
   return (
-    <section className="hero-surface relative flex min-h-screen items-center overflow-hidden pb-14 pt-28 sm:pt-32 lg:pb-20 lg:pt-0">
-      <div className="hero-grid pointer-events-none absolute inset-0 opacity-60" />
-      <div className="hero-dot-field pointer-events-none absolute inset-x-0 top-24 h-80 opacity-30" />
-      <div className="animate-soft-float-slow pointer-events-none absolute -right-24 top-32 h-80 w-80 rounded-full bg-brand-cyan/10 blur-[90px]" />
-      <div className="animate-soft-float pointer-events-none absolute left-[9%] top-44 h-72 w-72 rounded-full bg-brand-yellow/15 blur-[100px]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-white via-white/65 via-45% to-transparent blur-md" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 z-10 h-32 bg-brand-cyan/8 blur-[90px]" />
-
-      <div className="site-container relative z-10 grid items-center gap-8 sm:gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative flex w-full max-w-[34rem] flex-col items-center gap-4 justify-self-center text-center sm:gap-5 lg:items-start lg:justify-self-start lg:text-start"
-        >
-          <div className="pointer-events-none absolute -bottom-8 right-0 h-36 w-full max-w-2xl rounded-full bg-brand-cyan/10 blur-[80px]" />
-          <h1 className="w-full font-display text-[2.35rem] font-bold leading-[1.14] text-brand-dark sm:text-5xl md:text-6xl lg:text-5xl lg:leading-tight">
-            {t("hero.titleStart")} <span className="text-brand-cyan">|</span> {t("hero.titleMiddle")} <br />
-            {t("hero.titleLine")} <span className="text-brand-cyan">{t("hero.titleHighlight")}</span>
+    <section className="hero">
+      <div className="wrap">
+        <div className="hero-text">
+          <span className="pill">{t("hero.pill")}</span>
+          <h1>
+            {t("hero.titleStart")} <em>{t("hero.titleHighlight")}</em>
           </h1>
-          <p className="w-full text-lg font-medium leading-relaxed text-gray-600 sm:text-xl md:text-2xl lg:text-xl">
-            {t("hero.description")}
-          </p>
+          <p className="lead">{t("hero.lead")}</p>
+        </div>
 
-          <div className="mt-4  w-full contents flex-col gap-6 sm:mt-6 lg:w-auto">
-            <button
-              type="button"
-              onClick={() => {
-                openBookingForm();
-              }}
-              className="group flex w-full items-center justify-center gap-3 rounded-full bg-brand-dark px-7 py-4 text-lg font-bold text-white shadow-xl shadow-brand-dark/20 transition-all hover:bg-brand-cyan sm:px-9 sm:py-5 sm:text-xl md:w-fit lg:text-lg"
-            >
-              {t("hero.cta")}
-              <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-2 sm:h-6 sm:w-6" />
-            </button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, rotate: -5, scale: 0.92, y: 18 }}
-          whileInView={{ opacity: 1, rotate: 0, scale: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.05, ease: "easeOut" }}
-          className="relative flex justify-center lg:justify-end"
+        <div
+          ref={stageRef}
+          className={`stage${isDragging ? " drag" : ""}`}
+          aria-roledescription="carousel"
+          aria-label={t("hero.carouselLabel")}
+          tabIndex={0}
+          onPointerDown={handlePointerDown}
+          onKeyDown={handleKeyDown}
+          onMouseEnter={stopAutoplay}
         >
-          <div className="animate-soft-float-slow absolute -inset-12 bg-brand-cyan/10 rounded-full blur-[110px]" />
-          <div className="relative z-10 w-full max-w-[420px] sm:max-w-[620px] lg:max-w-[980px] xl:max-w-[1180px]">
-            <div className="hero-portrait-glow pointer-events-none absolute inset-x-[-6%] bottom-[-3%] z-0 h-[34%]" />
-            <Image
-              src="/hero.webp"
-              alt={t("hero.imageAlt")}
-              width={2754}
-              height={1536}
-              priority
-              sizes="(min-width: 1280px) 1180px, (min-width: 1024px) 980px, 100vw"
-              className="hero-portrait-image animate-soft-float relative z-10 w-full drop-shadow-2xl transition-transform duration-700 hover:scale-[1.02]"
-            />
+          {HERO_RESULT_CARDS.map((card, index) => {
+            const copy = cards[index];
+            let offset = index - current;
+            if (offset > count / 2) offset -= count;
+            if (offset < -count / 2) offset += count;
+            const distance = Math.abs(offset);
+            const isActive = distance === 0;
+
+            return (
+              <article
+                key={index}
+                className="rc"
+                dir={dir}
+                aria-label={copy?.title}
+                aria-hidden={!isActive}
+                style={{
+                  transform: `translateX(${-offset * forward * step}px) scale(${1 - distance * 0.13})`,
+                  zIndex: 10 - distance,
+                  filter: isActive ? "none" : `blur(${distance * 1.6}px)`,
+                  opacity: distance > 2 ? 0 : isActive ? 1 : 0.75,
+                  pointerEvents: isActive ? "auto" : "none",
+                }}
+              >
+                <header>
+                  <span>{copy?.title}</span>
+                  <i />
+                  <i />
+                </header>
+                <div className={`tiles${card.tiles.length === 3 ? " t3" : ""}`}>
+                  {card.tiles.map((tile, tileIndex) => (
+                    <div key={tileIndex} className={`tile ${tile.tone}`}>
+                      <small>{copy?.tiles[tileIndex]}</small>
+                      <b>{tile.value}</b>
+                    </div>
+                  ))}
+                </div>
+                <div className="cmp">
+                  {card.bars.map((bar, barIndex) => (
+                    <div key={barIndex}>
+                      <span>{copy?.bars[barIndex]}</span>
+                      <p className="bar">
+                        <i className={bar.highlight ? "hi" : undefined} style={{ width: `${bar.width}%` }} />
+                      </p>
+                      <em>{bar.value}</em>
+                    </div>
+                  ))}
+                </div>
+                <footer>
+                  <span className="up">{copy?.badge}</span>
+                  <button
+                    type="button"
+                    className="see"
+                    tabIndex={isActive ? 0 : -1}
+                    onPointerDown={(event) => event.stopPropagation()}
+                    onClick={() => openProof(card.proof)}
+                  >
+                    {t("hero.seeShot")}
+                  </button>
+                </footer>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="ctrl">
+          <button
+            type="button"
+            className="arrow"
+            aria-label={t("hero.prev")}
+            onClick={() => {
+              go(current - 1);
+              stopAutoplay();
+            }}
+          >
+            {isRtl ? "→" : "←"}
+          </button>
+          <div className="cdots">
+            {HERO_RESULT_CARDS.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                aria-label={t("hero.slide", { n: index + 1 })}
+                aria-current={index === current}
+                onClick={() => {
+                  go(index);
+                  stopAutoplay();
+                }}
+              />
+            ))}
           </div>
-        </motion.div>
+          <button
+            type="button"
+            className="arrow"
+            aria-label={t("hero.next")}
+            onClick={() => {
+              go(current + 1);
+              stopAutoplay();
+            }}
+          >
+            {isRtl ? "←" : "→"}
+          </button>
+        </div>
+        <p className="hint">{t("hero.hint")}</p>
+        <div className="allres">
+          <SiteLink className="btn btn-light" href="/results">
+            {t("hero.allResults")} {isRtl ? "←" : "→"}
+          </SiteLink>
+        </div>
       </div>
+
+      <Lightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
     </section>
   );
 }

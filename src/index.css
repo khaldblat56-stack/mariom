@@ -1,15 +1,14 @@
 @import "tailwindcss";
+@import "./site.css";
 
 @theme {
   --font-sans: "Cairo Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Cairo Variable", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-cyan: #00878a;
-  --color-brand-yellow: #ffcc33;
+  --color-brand-yellow: #fdca36;
   --color-brand-dark: #1a1a1a;
 }
-
-
 
 @layer base {
   * {
@@ -42,7 +41,8 @@
   }
 
   body {
-    @apply font-sans bg-white text-brand-dark;
+    @apply font-sans text-brand-dark;
+    background-color: var(--bg);
   }
 
   .locale-font-ar * {
@@ -57,14 +57,6 @@
 }
 
 @layer components {
-  .site-container {
-    @apply mx-auto w-full max-w-[1650px] px-4 sm:px-6 lg:px-10 xl:px-14;
-  }
-
-  .main-content {
-    @apply mx-auto w-full max-w-[1650px] px-4 sm:px-6 lg:px-10 xl:px-14;
-  }
-
   .hero-surface {
     background:
       radial-gradient(circle at 76% 32%, rgba(0, 135, 138, 0.12), transparent 34rem),
@@ -86,19 +78,6 @@
     mask-image: linear-gradient(90deg, transparent, black 20%, black 76%, transparent);
   }
 
-  .hero-portrait-image {
-    -webkit-mask-image: linear-gradient(to bottom, #000 0 68%, rgba(0, 0, 0, 0.96) 78%, transparent 98%);
-    mask-image: linear-gradient(to bottom, #000 0 68%, rgba(0, 0, 0, 0.96) 78%, transparent 98%);
-  }
-
-  .hero-portrait-glow {
-    background:
-      radial-gradient(ellipse at 50% 48%, rgba(0, 135, 138, 0.14), transparent 58%),
-      radial-gradient(ellipse at 30% 55%, rgba(255, 204, 51, 0.12), transparent 52%),
-      linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.64) 64%, rgba(255, 255, 255, 0.08));
-    filter: blur(34px);
-  }
-
   .animate-soft-float {
     animation: soft-float 8s ease-in-out infinite;
   }
@@ -111,7 +90,6 @@
     @apply block h-3 w-3 rounded-full;
     animation: loading-dot 650ms ease-in-out infinite;
   }
-
 }
 
 @keyframes soft-float {
@@ -136,56 +114,11 @@
   }
 }
 
-@keyframes partners-slider-scroll-ticker {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes partners-slider-heading-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/** Partners marquee: avoids a separate stylesheet from the lazily-loaded partners chunk */
-.partners-slider-heading {
-  animation: partners-slider-heading-fade-up 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.partners-slider-track {
-  display: flex;
-  width: max-content;
-  backface-visibility: hidden;
-  animation: partners-slider-scroll-ticker 25s linear infinite;
-  will-change: transform;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .animate-soft-float,
   .animate-soft-float-slow,
   .loading-dot {
     animation: none;
-  }
-
-  .partners-slider-track {
-    animation: none;
-  }
-
-  .partners-slider-heading {
-    animation: none;
-    opacity: 1;
   }
 }
 
@@ -194,18 +127,3 @@
   animation-play-state: paused;
 }
 
-.bg-hero {
-  background-image: linear-gradient(rgba(0, 135, 138, 0.1), rgba(0, 135, 138, 0.05)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2669&ixlib=rb-4.0.3');
-  background-size: cover;
-  background-position: center;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.arabic-tracking-wide {
-  letter-spacing: 0.01em;
-}
