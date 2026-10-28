@@ -1,16 +1,34 @@
 {
   "brand": {
-    "name": "Maryam",
-    "consulting": "Consulting",
-    "growthExpert": "Growth Expert"
+    "name": "Mariam",
+    "tagline": "Digital marketing consultant. Substance before channel."
+  },
+  "meta": {
+    "about": {
+      "title": "About Mariam | Mariam Wajeh Alawar",
+      "description": "Digital marketing consultant with a master's in computer information systems and founder of Clickat agency. Working with 200+ brands and charities across the Gulf since 2014."
+    },
+    "results": {
+      "title": "Results | Mariam Wajeh Alawar",
+      "description": "Real screenshots from inside client accounts: paid campaigns on Google, Meta, TikTok and Snapchat, plus SEO results."
+    }
   },
   "nav": {
-    "about": "About Maryam",
+    "about": "About",
+    "results": "Results",
     "services": "Services",
-    "philosophy": "My Philosophy",
-    "book": "Book a Session",
+    "approach": "Philosophy",
+    "brands": "Brands",
+    "articles": "Articles",
+    "faq": "FAQ",
+    "book": "Book a session",
+    "home": "Home",
     "translate": "ع",
-    "translateAria": "Translate the website to Arabic"
+    "translateAria": "Translate the website to Arabic",
+    "languageName": "العربية",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": "Menu"
   },
   "loading": {
     "intro": "The problem is often in the core, not the channel",
@@ -18,86 +36,535 @@
     "translating": "Translating..."
   },
   "hero": {
-    "titleStart": "Maryam",
-    "titleMiddle": "Smart Strategies",
-    "titleLine": "for Brand",
-    "titleHighlight": "Growth",
-    "description": "I help build strong identities and design marketing plans that deliver tangible results and real market expansion.",
-    "cta": "Book your consulting session",
-    "imageAlt": "Maryam - marketing consulting"
-  },
-  "stats": {
-    "eyebrow": "The Numbers",
-    "title": "Experience and results at a glance",
-    "items": [
+    "pill": "Digital marketing consultant",
+    "titleStart": "Spending on ads",
+    "titleHighlight": "but not selling?",
+    "lead": "The problem is usually your message, not the ad. These are real numbers from my clients' accounts.",
+    "carouselLabel": "Campaign results",
+    "prev": "Previous",
+    "next": "Next",
+    "slide": "Result {{n}}",
+    "hint": "Swipe or use the arrows",
+    "seeShot": "See the screenshot",
+    "allResults": "See all results",
+    "cards": [
       {
-        "value": "+13",
-        "label": "years of professional experience"
+        "title": "Google Ads · Online store",
+        "tiles": [
+          "Cost",
+          "Conversion value",
+          "Conversions",
+          "ROAS"
+        ],
+        "bars": [
+          "Spend",
+          "Return"
+        ],
+        "badge": "▲ Every riyal returned 12.87"
       },
       {
-        "value": "+265",
-        "label": "one-on-one marketing consultations"
+        "title": "Mohtarifeen store · Last 12 months",
+        "tiles": [
+          "Sales",
+          "Orders",
+          "Growth"
+        ],
+        "bars": [
+          "Previous year",
+          "This year"
+        ],
+        "badge": "▲ SAR 3.1M in sales"
       },
       {
-        "value": "+68",
-        "label": "projects supported toward success"
+        "title": "TikTok · Snap · Meta",
+        "tiles": [
+          "Spend",
+          "Sales",
+          "Purchases",
+          "ROAS"
+        ],
+        "bars": [
+          "Spend",
+          "Sales"
+        ],
+        "badge": "▲ 26.7M impressions"
       },
       {
-        "value": "91%",
-        "label": "client satisfaction rate"
+        "title": "Google Search · Organic visibility",
+        "tiles": [
+          "Clicks",
+          "Impressions",
+          "CTR",
+          "Position"
+        ],
+        "bars": [
+          "Before",
+          "After"
+        ],
+        "badge": "▲ Clicks ×5"
+      },
+      {
+        "title": "SEO · National Day season",
+        "tiles": [
+          "Total revenue",
+          "From organic search",
+          "Organic conversions"
+        ],
+        "bars": [
+          "Total",
+          "Organic"
+        ],
+        "badge": "▲ SAR 460K with no ads"
       }
     ]
   },
-  "partnersSlider": {
-    "heading": "Trusted by brands and organizations"
-  },
-  "about": {
-    "eyebrow": "",
-    "title": "About Maryam",
-    "imageAlt": "Maryam's journey of expertise and passion",
-    "paragraph1": "Since 2013, I have moved between brand foundation, campaign management, and sales growth.",
-    "paragraph2Start": "In 2019, I founded",
-    "company": "Creativity Company",
-    "paragraph2End": "as a home for creativity.",
-    "paragraph3Start": "Today, I dedicate my expertise as a",
-    "partner": "\"strategic partner\"",
-    "paragraph3End": "for business owners, helping identify what is holding the project back and map a clear route toward success.",
-    "highlight": "My approach is practical and free from unnecessary complexity, connecting vision to execution and turning challenges into measurable next steps."
+  "numbers": {
+    "pill": "By the numbers",
+    "heroTitle": "brands I've worked with",
+    "heroDesc": "From oud and perfume stores to supplements and charities, from 2014 to today.",
+    "items": [
+      "years of experience",
+      "one-on-one consultations",
+      "charities",
+      "client satisfaction"
+    ]
   },
   "services": {
-    "title": "My Services",
-    "imageAlt": "Providing consulting services",
+    "title": "My services",
     "items": [
       {
-        "title": "Strategic Consulting",
-        "desc": "A precise diagnosis of your project and a clear action plan for execution."
+        "title": "Strategic consulting",
+        "desc": "A precise diagnosis and a clear plan to execute."
       },
       {
-        "title": "Brand Foundation",
-        "desc": "I help build a complete brand from research to launch."
+        "title": "Paid campaign management",
+        "desc": "Meta, Google, TikTok and Snapchat."
       },
       {
-        "title": "Marketing Efficiency Growth",
-        "desc": "A comprehensive review of your current work and a path to multiply sales productivity."
+        "title": "Search engine optimization",
+        "desc": "Visibility and sales from Google without ads."
+      },
+      {
+        "title": "Brand building",
+        "desc": "A complete brand, from research to launch."
+      },
+      {
+        "title": "Charity marketing",
+        "desc": "Donation campaigns that reach the right donor."
+      },
+      {
+        "title": "AI-powered marketing",
+        "desc": "Faster content and analysis at a lower cost."
+      }
+    ]
+  },
+  "steps": {
+    "title": "How I work",
+    "items": [
+      {
+        "title": "Diagnosis",
+        "desc": "I find where your money is leaking."
+      },
+      {
+        "title": "Message",
+        "desc": "We decide what to say, and to whom."
+      },
+      {
+        "title": "Launch",
+        "desc": "Campaigns with accurate tracking from day one."
+      },
+      {
+        "title": "Optimize",
+        "desc": "We cut what doesn't convert and double down on what does."
       }
     ]
   },
   "philosophy": {
-    "title": "My Philosophy",
-    "subtitle": "The goal is not to increase marketing noise, but to work intelligently.",
-    "body": "The goal is not to create more marketing \"noise\", but to work smarter and focus effort where it creates real impact.",
-    "problemTitle": "Transparency",
-    "problemBody": "We face challenges honestly.",
-    "opportunityTitle": "Methodology",
-    "opportunityBody": "We capture opportunities with clarity.",
-    "closing": "Results: the right work is more valuable than endless attempts."
+    "pill": "My philosophy",
+    "quoteStart": "The problem is usually in the",
+    "quoteHighlight": "core",
+    "quoteEnd": "not the channel.",
+    "desc": "Most accounts don't need a stronger ad. They need a clearer offer and the right message.",
+    "cta": "Get to know me",
+    "imageAlt": "Mariam Wajeh"
+  },
+  "brands": {
+    "title": "Brands that trusted me",
+    "wallLabel": "200 dots representing brands",
+    "wallCaption": "Each dot is a brand I've worked with",
+    "legendBrands": "Brands",
+    "legendCharities": "Charities",
+    "items": [
+      "Al Oun Oud",
+      "Rumh Al Teeb",
+      "Machinist",
+      "Dark Core",
+      "Mohtarifeen Supplements",
+      "Dar Dinar",
+      "Kayan Al Anfas",
+      "Nasayem Al Oud"
+    ]
+  },
+  "testimonials": {
+    "title": "What clients say",
+    "items": [
+      {
+        "quote": "I worked with Mariam on Kayan Al Anfas, and what I liked most is that she didn't start with ads. She started by understanding the brand and our audience, and worked on the message. Professional, consistent follow-up, and every decision backed by clear numbers. I recommend her with full confidence.",
+        "name": "Amer Al Shaaban",
+        "role": "Founder, Kayan Al Anfas"
+      },
+      {
+        "quote": "Mariam was with us from the start, from the name and identity of Nasayem Al Oud until it became a well-known brand. She helped us understand what sets us apart and communicate it properly, then ran our campaigns and sales grew beyond what we expected. Organized work, and she truly understands the oud market.",
+        "name": "Abu Turki",
+        "role": "Founder, Nasayem Al Oud"
+      }
+    ]
+  },
+  "articles": {
+    "title": "Articles",
+    "desc": "Practical ideas from my day-to-day work inside ad accounts.",
+    "readTime": "3 min read",
+    "byline": "Mariam Wajeh · 3 min read",
+    "back": "All articles",
+    "items": [
+      {
+        "tag": "Strategy",
+        "cover": "?",
+        "title": "Why are your ads spending but not selling?",
+        "excerpt": "Four questions that show you where the problem is before you raise the budget.",
+        "body": [
+          {
+            "type": "p",
+            "text": "The first thing most business owners do when results drop: raise the budget, try a new platform, or change the design. In most cases I've seen, the problem was none of these."
+          },
+          {
+            "type": "p",
+            "text": "Before you touch the ad, answer these four questions honestly:"
+          },
+          {
+            "type": "h",
+            "text": "1. Is your offer clear in two seconds?"
+          },
+          {
+            "type": "p",
+            "text": "If someone sees your ad while scrolling fast, do they know what you sell, who it's for, and why they should buy from you specifically? If the answer needs explaining, your ad is paying the price for an unclear offer."
+          },
+          {
+            "type": "h",
+            "text": "2. Are you talking to the right audience?"
+          },
+          {
+            "type": "p",
+            "text": "The same product sells to two audiences in two different ways. A gift is not the same as personal use, and the decision maker is not always the user. Decide who pays, and what matters to them."
+          },
+          {
+            "type": "h",
+            "text": "3. Does your message match what the customer is looking for?"
+          },
+          {
+            "type": "p",
+            "text": "Customers aren't searching for \"high quality at competitive prices\". They're looking for a solution to a specific problem. Use their words, not yours."
+          },
+          {
+            "type": "h",
+            "text": "4. Are your numbers honest?"
+          },
+          {
+            "type": "p",
+            "text": "Wrong tracking means wrong decisions. Make sure your pixel and GA4 record sales correctly before you judge any campaign."
+          }
+        ],
+        "end": {
+          "text": "Fix these four, and every platform becomes cheaper and clearer. That's what I call:",
+          "highlight": "substance before channel."
+        },
+        "cta": "Want me to review your campaigns? Get in touch"
+      },
+      {
+        "tag": "SEO",
+        "cover": "SEO",
+        "title": "SEO isn't a luxury: sales without ads",
+        "excerpt": "How Google becomes a steady source of sales for your store, especially in peak seasons.",
+        "body": [
+          {
+            "type": "p",
+            "text": "For one store I worked with, organic search from Google brought in more than SAR 460K in sales within a year, including the National Day season, the store's most successful ever. All of it without paying a single riyal per click."
+          },
+          {
+            "type": "p",
+            "text": "Ads stop the moment the budget stops. SEO builds an asset that works for you every day. These are the things that make the difference:"
+          },
+          {
+            "type": "h",
+            "text": "Start with what people search for"
+          },
+          {
+            "type": "p",
+            "text": "Learn the words your customers type into Google, and build your product and category pages around them, not around internal names nobody knows."
+          },
+          {
+            "type": "h",
+            "text": "Prepare for seasons well in advance"
+          },
+          {
+            "type": "p",
+            "text": "Seasonal pages like National Day, Ramadan and Eid need time to rank on Google. Prepare them weeks before the season, not the same week."
+          },
+          {
+            "type": "h",
+            "text": "Get the technical basics right"
+          },
+          {
+            "type": "p",
+            "text": "Site speed, clear titles, a description for every page, and logical internal links. Simple things with a big impact."
+          },
+          {
+            "type": "h",
+            "text": "Track the right numbers"
+          },
+          {
+            "type": "p",
+            "text": "Impressions and clicks matter, but the most important number is sales from organic search in GA4. That's what tells you SEO is really working."
+          }
+        ],
+        "cta": "See the SEO results"
+      },
+      {
+        "tag": "Service businesses",
+        "cover": "CPL",
+        "title": "Running a service business? Measure leads, not clicks",
+        "excerpt": "The number to track when your goal is inquiries, not online sales.",
+        "body": [
+          {
+            "type": "p",
+            "text": "If your business is a clinic, an office, or any service that isn't sold online directly, most of the numbers in your ads dashboard mean very little. Clicks and impressions look nice, but they don't pay salaries."
+          },
+          {
+            "type": "h",
+            "text": "The number that matters: cost per lead"
+          },
+          {
+            "type": "p",
+            "text": "How much did you pay for one person to actually contact you? A WhatsApp message, a call, or a completed form. That's the number to compare campaigns with."
+          },
+          {
+            "type": "h",
+            "text": "Then: how many of them became real customers?"
+          },
+          {
+            "type": "p",
+            "text": "A campaign that brings cheap leads but nobody books is worse than a pricier one that brings serious people. Follow up with your team on what happened with every lead."
+          },
+          {
+            "type": "h",
+            "text": "Offer before targeting"
+          },
+          {
+            "type": "p",
+            "text": "In services, people buy trust. Make clear what sets you apart, and show proof: results, client reviews, or certifications. And keep the contact step simple and obvious."
+          },
+          {
+            "type": "h",
+            "text": "Don't judge too fast"
+          },
+          {
+            "type": "p",
+            "text": "The decision cycle for services is longer than for online stores. Give a campaign enough time before you stop it."
+          }
+        ],
+        "cta": "Want to work on your business together?"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Before we start",
+    "items": [
+      {
+        "q": "Which platforms will my campaigns run on?",
+        "a": "Meta, Google, TikTok and Snapchat. We choose the platform based on where your audience is."
+      },
+      {
+        "q": "My business offers services, not an online store. Can you help?",
+        "a": "Yes. Service businesses need campaigns that bring leads and inquiries, so we work on your offer and message, and measure cost per lead instead of direct sales."
+      },
+      {
+        "q": "How much budget do I need?",
+        "a": "We decide together in the consultation based on your business. A small, well-planned budget beats a large, random one."
+      },
+      {
+        "q": "When will I see results?",
+        "a": "The first two weeks are for setup, then the numbers start improving month over month."
+      }
+    ]
+  },
+  "results": {
+    "back": "Back to home",
+    "title": "Results from inside the accounts",
+    "desc": "Click any image to enlarge it.",
+    "zoom": "Enlarge screenshot: {{label}}",
+    "lightbox": "Enlarged image",
+    "close": "Close",
+    "items": [
+      {
+        "tag": "Paid campaigns · Store",
+        "value": "SAR 3.13M",
+        "desc": "A year of sales for the Mohtarifeen store, with 26% growth and 9,741 orders.",
+        "alt": "Mohtarifeen store sales dashboard"
+      },
+      {
+        "tag": "TikTok · Snap · Meta",
+        "value": "ROAS 5.06",
+        "desc": "SAR 305K in spend returned 1.55M from 4,734 purchases.",
+        "alt": "TikTok, Snapchat and Facebook campaign results"
+      },
+      {
+        "tag": "Google Ads",
+        "value": "ROAS 12.87",
+        "desc": "69.7K in spend generated 897K in conversion value.",
+        "alt": "Google Ads campaign results"
+      },
+      {
+        "tag": "SEO · Google visibility",
+        "value": "×5 clicks",
+        "desc": "From 39.3K to 207K clicks, and impressions from 2.2M to 7.6M.",
+        "alt": "Impressions and clicks growth in Search Console"
+      },
+      {
+        "tag": "SEO · National Day",
+        "value": "SAR 460K",
+        "desc": "Organic search sales in the store's most successful National Day season.",
+        "alt": "Organic search sales during the National Day season"
+      },
+      {
+        "tag": "SEO · Store",
+        "value": "SAR 120K",
+        "desc": "Yearly sales from Google with no ads, while impressions tripled.",
+        "alt": "Organic search sales and visibility report"
+      }
+    ]
+  },
+  "about": {
+    "back": "Back to home",
+    "pill": "About Mariam",
+    "title": "I'm Mariam Wajeh Alawar",
+    "lead": "Digital marketing consultant, master's in computer information systems, and founder of Clickat agency. Since 2014 I've been helping brands and charities across the Gulf sell more and spend less.",
+    "imageAlt": "Mariam Wajeh",
+    "storyTitle": "My story in brief",
+    "story": [
+      {
+        "lead": "I started with words.",
+        "text": "In 2014 I entered marketing through content, as content manager at Toot. Three years of writing, testing and learning what makes people stop, read and buy."
+      },
+      {
+        "lead": "Then came the numbers.",
+        "text": "In 2017 I finished a master's in computer information systems and started seeing marketing through data. I freelanced, founded Creativity in 2018, then Clickat, a paid advertising agency, in 2022, and went on to work with international organizations like Qatar Charity and Gaza Sky Geeks."
+      },
+      {
+        "lead": "Today I combine both.",
+        "text": "More than 200 brands taught me that the ad is rarely the problem. Content gives me the message, and data gives me the proof. That's what I call:",
+        "highlight": "substance before channel."
+      }
+    ],
+    "nums": [
+      "years of experience",
+      "brands",
+      "one-on-one consultations",
+      "charities"
+    ],
+    "whyTitle": "What sets me apart",
+    "why": [
+      {
+        "title": "I start with the core",
+        "desc": "I fix the message and the offer before spending a single riyal."
+      },
+      {
+        "title": "I work with numbers",
+        "desc": "Every decision is based on data from inside the account."
+      },
+      {
+        "title": "I understand the charity sector",
+        "desc": "I've worked with Qatar Charity and more than 20 charities."
+      }
+    ],
+    "platformsTitle": "Platforms I work on",
+    "platforms": [
+      "Meta",
+      "Google Ads",
+      "TikTok",
+      "Snapchat",
+      "SEO",
+      "GA4",
+      "AI"
+    ],
+    "marketsTitle": "Markets",
+    "markets": [
+      "Saudi Arabia",
+      "Qatar",
+      "Oman",
+      "Palestine",
+      "The Gulf"
+    ],
+    "timelineTitle": "Milestones",
+    "timeline": [
+      {
+        "year": "2014",
+        "title": "Starting at Toot",
+        "desc": "Content manager at Toot, a content production company, for 3 years."
+      },
+      {
+        "year": "2017",
+        "title": "Master's and freelancing",
+        "desc": "Master's in computer information systems, and the start of freelance work."
+      },
+      {
+        "year": "2018",
+        "title": "Creativity",
+        "desc": "Founded my first company."
+      },
+      {
+        "year": "2022",
+        "title": "Clickat agency",
+        "desc": "An agency specialized in paid advertising."
+      },
+      {
+        "year": "2022",
+        "title": "International organizations",
+        "desc": "Marketing consultant for Qatar Charity and Gaza Sky Geeks."
+      },
+      {
+        "year": "Today",
+        "title": "Independent consultant",
+        "desc": "200+ brands and 265+ one-on-one consultations."
+      }
+    ],
+    "cta": "See my results"
   },
   "contact": {
-    "titleLine1": "Tell me about",
-    "titleLine2": "your project challenges",
-    "description": "I will get back to you with practical steps we can start immediately.",
-    "whatsapp": "WhatsApp",
-    "booking": "Booking Form",
+    "pill": "Ready to start?",
+    "titleStart": "Let's find where your",
+    "titleHighlight": "budget is leaking",
+    "description": "Send me a short summary of your business, and I'll get back to you with clear steps you can start on.",
+    "steps": [
+      {
+        "title": "Message me on WhatsApp",
+        "desc": "Tell me about your business and your challenge."
+      },
+      {
+        "title": "We book a session",
+        "desc": "A session to review your accounts and your message."
+      },
+      {
+        "title": "You leave with a plan",
+        "desc": "Practical steps you can start on right away."
+      }
+    ],
+    "cardTitle": "The fastest way to reach me",
+    "whatsapp": "Message me on WhatsApp",
+    "copy": "Copy number",
+    "copied": "Copied ✓",
+    "copyFallback": "Select and copy the number",
+    "booking": "Book a session",
+    "note": "I work remotely with clients in Saudi Arabia and across the Gulf.",
     "form": {
       "name": "Full name",
       "namePlaceholder": "Your name",
@@ -125,11 +592,14 @@
       "setupSuccess": "Your request is ready. Add the email setup values to send it automatically.",
       "error": "Something went wrong. Please try again or contact me on WhatsApp.",
       "close": "Close booking form",
-      "whatsappIntro": "Hello Maryam, I would like to book a consulting session."
+      "whatsappIntro": "Hello Mariam, I would like to book a consulting session."
     },
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
-    "facebook": "Facebook",
-    "rights": "All rights reserved"
+    "facebook": "Facebook"
+  },
+  "footer": {
+    "linksLabel": "Links",
+    "rights": "© {{year}} Mariam Wajeh Alawar. All rights reserved."
   }
 }

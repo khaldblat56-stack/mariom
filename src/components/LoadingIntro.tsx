@@ -10,8 +10,9 @@ const INTRO_SEEN_STORAGE_KEY = "mriom-loading-intro-seen";
 
 export function LoadingIntro() {
   const { t } = useTranslation();
-  const [isVisible, setIsVisible] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  // Rendered visible on the server so first-time visitors never see content flash before the intro.
+  const [isVisible, setIsVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(true);
 
   const dismiss = useCallback(() => {
     window.sessionStorage.setItem(INTRO_SEEN_STORAGE_KEY, "true");
@@ -25,11 +26,9 @@ export function LoadingIntro() {
   useEffect(() => {
     if (window.sessionStorage.getItem(INTRO_SEEN_STORAGE_KEY) === "true") {
       document.documentElement.dataset.loadingIntro = "done";
-      return;
+      setIsVisible(false);
+      setIsMounted(false);
     }
-
-    setIsVisible(true);
-    setIsMounted(true);
   }, []);
 
   useEffect(() => {

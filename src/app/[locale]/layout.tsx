@@ -2,7 +2,9 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { SiteShell } from "@/components/SiteShell";
 import { isSupportedLocale, SUPPORTED_LOCALES } from "@/lib/i18n/config";
+import { JsonLd, OG_IMAGE, SITE_URL } from "@/lib/seo";
 import { LocaleProviders } from "./LocaleProviders";
 
 const expoArabic = localFont({
@@ -20,8 +22,6 @@ const expoArabic = localFont({
   ],
   display: "swap",
 });
-
-const siteUrl = "https://mariamw.com";
 
 const seo = {
   ar: {
@@ -47,7 +47,6 @@ const seo = {
     ],
     path: "/ar",
     ogLocale: "ar_SA",
-    ogImage: "/hero.png",
   },
   en: {
     title: "Mariam Wajeh Alawar | Digital Marketing Consultant & Paid Ads Expert",
@@ -72,7 +71,6 @@ const seo = {
     ],
     path: "/en",
     ogLocale: "en_US",
-    ogImage: "/hero.png",
   },
 } as const;
 
@@ -86,7 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const localeSeo = seo[locale];
 
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title: localeSeo.title,
     description: localeSeo.description,
     icons: {
@@ -108,14 +106,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: "Mariam Wajeh",
       type: "website",
       locale: localeSeo.ogLocale,
-      images: [
-        {
-          url: localeSeo.ogImage,
-          width: 1200,
-          height: 630,
-          alt: locale === "ar" ? "مريم وجيه الأعور" : "Mariam Wajeh Alawar",
-        },
-      ],
+      images: [{ ...OG_IMAGE, alt: locale === "ar" ? "مريم وجيه الأعور" : "Mariam Wajeh Alawar" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: localeSeo.title,
+      description: localeSeo.description,
+      images: [OG_IMAGE.url],
     },
   };
 }
@@ -138,33 +135,58 @@ export default async function LocaleLayout({
   }
 
   const localeSeo = seo[locale];
-  const personSchema = {
+  const name = locale === "ar" ? "مريم وجيه الأعور" : "Mariam Wajeh Alawar";
+  const siteSchema = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: locale === "ar" ? "مريم وجيه الأعور" : "Mariam Wajeh Alawar",
-    alternateName: locale === "ar" ? "مريم وجيه" : "Mariam Wajeh",
-    url: `${siteUrl}${localeSeo.path}`,
-    image: `${siteUrl}/hero.png`,
-    jobTitle: locale === "ar" ? "مستشارة تسويق رقمي" : "Digital Marketing Consultant",
-    description: localeSeo.longDescription,
-    knowsAbout:
-      locale === "ar"
-        ? ["التسويق الرقمي", "الحملات الإعلانية الممولة", "ميتا ادز", "جوجل ادز", "التسويق بالذكاء الاصطناعي"]
-        : ["Digital marketing", "Paid ad campaigns", "Meta Ads", "Google Ads", "AI-powered marketing"],
-    sameAs: [
-      "https://www.facebook.com/mari.waj",
-      "https://www.instagram.com/mariam_wajeh/",
-      "https://www.linkedin.com/in/mariamwajeh/",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        name,
+        alternateName: locale === "ar" ? "مريم وجيه" : "Mariam Wajeh",
+        url: `${SITE_URL}${localeSeo.path}`,
+        image: `${SITE_URL}/images/mariam-desk.webp`,
+        jobTitle: locale === "ar" ? "مستشارة تسويق رقمي" : "Digital Marketing Consultant",
+        description: localeSeo.longDescription,
+        knowsAbout:
+          locale === "ar"
+            ? ["التسويق الرقمي", "الحملات الإعلانية الممولة", "ميتا ادز", "جوجل ادز", "تحسين محركات البحث", "التسويق بالذكاء الاصطناعي"]
+            : ["Digital marketing", "Paid ad campaigns", "Meta Ads", "Google Ads", "SEO", "AI-powered marketing"],
+        sameAs: [
+          "https://www.facebook.com/mari.waj",
+          "https://www.instagram.com/mariam_wajeh/",
+          "https://www.linkedin.com/in/mariamwajeh/",
+        ],
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${SITE_URL}/#service`,
+        name,
+        url: `${SITE_URL}${localeSeo.path}`,
+        image: `${SITE_URL}${OG_IMAGE.url}`,
+        logo: `${SITE_URL}/images/logo.webp`,
+        description: localeSeo.description,
+        telephone: "+96891933324",
+        areaServed: ["SA", "QA", "OM", "AE", "KW", "BH"],
+        founder: { "@id": `${SITE_URL}/#person` },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: "Mariam Wajeh",
+        inLanguage: locale,
+        publisher: { "@id": `${SITE_URL}/#person` },
+      },
     ],
   };
 
   return (
     <div className={locale === "ar" ? `${expoArabic.className} locale-font-ar` : undefined}>
-      <LocaleProviders locale={locale}>{children}</LocaleProviders>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
+      <LocaleProviders locale={locale}>
+        <SiteShell>{children}</SiteShell>
+      </LocaleProviders>
+      <JsonLd data={siteSchema} />
     </div>
   );
 }

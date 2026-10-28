@@ -16,11 +16,10 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import {
   applyBundledTranslations,
   DEFAULT_LOCALE,
+  getLocalizedPath,
   getOppositeLocale,
   isSupportedLocale,
-  loadLocaleResources,
   LOCALE_STORAGE_KEY,
-  MIN_FALLBACK_TRANSLATION,
   type Locale,
   syncDocumentLocale,
 } from "./config";
@@ -35,68 +34,41 @@ type I18nControls = {
 
 const I18nControlsContext = createContext<I18nControls | null>(null);
 
-const i18n = i18next.createInstance();
+/**
+ * One instance per provider (i.e. per locale layout) so server rendering of /ar and /en never
+ * shares language state. Translations are bundled, so init is synchronous and the first render
+ * — including the server render — is already translated.
+ */
+function createI18n(locale: Locale) {
+  const instance = i18next.createInstance();
 
-void i18n.use(initReactI18next).init({
-  fallbackLng: DEFAULT_LOCALE,
-  interpolation: { escapeValue: false },
-  lng: DEFAULT_LOCALE,
-  react: { useSuspense: false },
-  resources: {},
-});
+  void instance.use(initReactI18next).init({
+    fallbackLng: DEFAULT_LOCALE,
+    initAsync: false,
+    interpolation: { escapeValue: false },
+    lng: locale,
+    react: { useSuspense: false },
+    resources: {},
+  });
 
-applyBundledTranslations(i18n);
+  applyBundledTranslations(instance);
+
+  return instance;
+}
 
 function wait(ms: number) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
-async function ensureLocaleResources(locale: Locale) {
-  if (i18n.hasResourceBundle(locale, "translation")) {
-    return;
-  }
-
-  try {
-    const resource = await loadLocaleResources(locale);
-    i18n.addResourceBundle(locale, "translation", resource.translation, true, true);
-  } catch {
-    i18n.addResourceBundle(locale, "translation", MIN_FALLBACK_TRANSLATION, true, true);
-  }
-}
-
 export function I18nProvider({ children, initialLocale }: { children: ReactNode; initialLocale: Locale }) {
   const router = useRouter();
+  const [i18n] = useState(() => createI18n(initialLocale));
   const [locale, setLocale] = useState<Locale>(initialLocale);
-  const [isReady, setIsReady] = useState(false);
   const [isTranslating, setIsTranslating] = useState(false);
   const [translationOverlayLocale, setTranslationOverlayLocale] = useState<Locale>(initialLocale);
 
   useLayoutEffect(() => {
-    let cancelled = false;
-
-    async function loadInitialLocale() {
-      syncDocumentLocale(initialLocale);
-
-      try {
-        await ensureLocaleResources(initialLocale);
-        await i18n.changeLanguage(initialLocale);
-      } catch {
-        applyBundledTranslations(i18n);
-        i18n.addResourceBundle(initialLocale, "translation", MIN_FALLBACK_TRANSLATION, true, true);
-        await i18n.changeLanguage(initialLocale);
-      } finally {
-        if (!cancelled) {
-          setLocale(initialLocale);
-          setIsReady(true);
-        }
-      }
-    }
-
-    void loadInitialLocale();
-
-    return () => {
-      cancelled = true;
-    };
+    syncDocumentLocale(initialLocale);
   }, [initialLocale]);
 
   const changeLocale = useCallback(
@@ -105,7 +77,6 @@ export function I18nProvider({ children, initialLocale }: { children: ReactNode;
         return;
       }
 
-      await ensureLocaleResources(nextLocale);
       setTranslationOverlayLocale(nextLocale);
       setIsTranslating(true);
       await wait(TRANSLATION_LOADING_MS);
@@ -113,10 +84,10 @@ export function I18nProvider({ children, initialLocale }: { children: ReactNode;
       window.localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale);
       syncDocumentLocale(nextLocale);
       setLocale(nextLocale);
-      router.push(`/${nextLocale}${window.location.hash}`);
+      router.push(`${getLocalizedPath(window.location.pathname, nextLocale)}${window.location.hash}`);
       setIsTranslating(false);
     },
-    [router]
+    [i18n, router]
   );
 
   const toggleLocale = useCallback(async () => {
@@ -135,9 +106,9 @@ export function I18nProvider({ children, initialLocale }: { children: ReactNode;
   return (
     <I18nextProvider i18n={i18n}>
       <I18nControlsContext.Provider value={controls}>
-        {isReady ? children : null}
+        {children}
         <LoadingOverlay
-          isVisible={!isReady || isTranslating}
+          isVisible={isTranslating}
           text={i18n.t("loading.intro", {
             lng: isTranslating ? translationOverlayLocale : initialLocale,
           })}

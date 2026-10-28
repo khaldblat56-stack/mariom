@@ -1,91 +1,38 @@
 "use client";
 
-import { Target, Zap } from "lucide-react";
-import { motion } from "motion/react";
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { SiteLink } from "@/components/SiteLink";
+import { useI18nControls } from "@/lib/i18n/I18nProvider";
+import { PORTRAIT_IMAGE } from "@/lib/site-content";
 
 export function PhilosophySection() {
   const { t } = useTranslation();
+  const { locale } = useI18nControls();
 
   return (
-    <section id="philosophy" className="flex min-h-screen items-center py-40 bg-white overflow-hidden">
-      <div className="site-container">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.45 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="flex flex-col items-center text-center gap-6 mb-20"
-        >
-
-                <h2 className="font-display text-4xl font-bold text-brand-dark sm:text-5xl lg:text-4xl xl:text-5xl">
-              {t("philosophy.title")}
-              </h2>
-                <span aria-hidden className="block h-1.5 w-20 rounded-full bg-brand-cyan" />
-          
-            {/* <h3 className="text-3xl text-brand-cyan font-bold lg:text-2xl">{t("philosophy.subtitle")}</h3> */}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.75, ease: "easeOut" }}
-            className="bg-brand-dark p-12 md:p-20 rounded-[4rem] text-white relative shadow-2xl"
-          >
-            <div className="absolute top-0 left-12 w-24 h-24 bg-brand-yellow/20 rounded-b-full" />
-            <motion.p
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.45 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="text-2xl md:text-3xl leading-relaxed font-medium mb-16 lg:text-2xl"
-            >
-              {t("philosophy.body")}
-            </motion.p>
-
-            <div className="grid md:grid-cols-2 gap-10">
-              <motion.div
-                initial={{ opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.45 }}
-                transition={{ duration: 0.55, ease: "easeOut", delay: 0.18 }}
-                className="flex flex-col gap-4 p-8 bg-white/5 rounded-3xl border border-white/10"
-              >
-                <div className="bg-brand-cyan w-12 h-12 rounded-xl flex items-center justify-center">
-                  <Target className="w-7 h-7 text-white" />
-                </div>
-                <h4 className="text-2xl font-bold text-brand-yellow lg:text-xl">{t("philosophy.problemTitle")}</h4>
-                <p className="text-xl text-gray-300 lg:text-lg">{t("philosophy.problemBody")}</p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.45 }}
-                transition={{ duration: 0.55, ease: "easeOut", delay: 0.3 }}
-                className="flex flex-col gap-4 p-8 bg-white/5 rounded-3xl border border-white/10"
-              >
-                <div className="bg-brand-yellow w-12 h-12 rounded-xl flex items-center justify-center">
-                  <Zap className="w-7 h-7 text-brand-dark" />
-                </div>
-                <h4 className="text-2xl font-bold text-brand-yellow lg:text-xl">{t("philosophy.opportunityTitle")}</h4>
-                <p className="text-xl text-gray-300 lg:text-lg">{t("philosophy.opportunityBody")}</p>
-              </motion.div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.45 }}
-              transition={{ duration: 0.55, ease: "easeOut", delay: 0.36 }}
-              className="mt-16 text-center"
-            >
-              <p className="text-2xl font-bold text-brand-cyan bg-brand-cyan/10 inline-block px-10 py-4 rounded-full lg:text-xl">
-                {t("philosophy.closing")}
-              </p>
-            </motion.div>
-          </motion.div>
+    <section id="approach">
+      <div className="wrap">
+        <div className="teal-band">
+          <div>
+            <span className="pill">{t("philosophy.pill")}</span>
+            <blockquote>
+              {t("philosophy.quoteStart")} <span>{t("philosophy.quoteHighlight")}</span> {t("philosophy.quoteEnd")}
+            </blockquote>
+            <p className="muted">{t("philosophy.desc")}</p>
+            <SiteLink className="btn btn-light" href="/about">
+              {t("philosophy.cta")} {locale === "ar" ? "←" : "→"}
+            </SiteLink>
+          </div>
+          <figure className="portrait">
+            <Image
+              src={PORTRAIT_IMAGE.src}
+              width={PORTRAIT_IMAGE.width}
+              height={PORTRAIT_IMAGE.height}
+              alt={t("philosophy.imageAlt")}
+              sizes="(max-width: 820px) 340px, 440px"
+            />
+          </figure>
         </div>
       </div>
     </section>
