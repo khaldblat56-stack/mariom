@@ -224,9 +224,522 @@
     "title": "Articles",
     "desc": "Practical ideas from my day-to-day work inside ad accounts.",
     "readTime": "3 min read",
-    "byline": "Mariam Wajeh · 3 min read",
+    "author": "Mariam Wajeh",
+    "sources": "Sources",
     "back": "All articles",
     "items": [
+      {
+        "tag": "Seasonal campaigns",
+        "cover": "27/11",
+        "date": "Nov 3, 2026",
+        "readTime": "4 min read",
+        "title": "White Friday 2026: your guide to getting your ad campaigns ready",
+        "excerpt": "A four-phase plan for your offer, discount license and ads, from today until after the season.",
+        "body": [
+          {
+            "type": "lead",
+            "text": "This year White Friday falls on **November 27, 2026**, less than 4 weeks away. It is the last Friday of November, the same date as Black Friday worldwide, but with a name that respects what Friday means in our region (Khaleej Calculators)."
+          },
+          {
+            "type": "p",
+            "text": "In practice the season is longer than one day: most big stores start days before and run their offers until Cyber Monday on Monday, November 30. That means the competition for customers' attention starts early, and ad costs climb the closer we get to Friday."
+          },
+          {
+            "type": "p",
+            "text": "The store that wins this season isn't necessarily the one with the biggest discount. It's the one that prepared its audience, its offer and its ads before the market got crowded. This guide lays out the steps from today until after the sale."
+          },
+          {
+            "type": "h",
+            "text": "The timeline"
+          },
+          {
+            "type": "p",
+            "text": "Start preparing now, and split the work into four phases:"
+          },
+          {
+            "type": "timeline",
+            "title": "Four phases from today until after White Friday",
+            "items": [
+              {
+                "title": "Prepare",
+                "dates": "Nov 3 – 12",
+                "points": [
+                  "Set your offer and prices",
+                  "Get your discount license",
+                  "Set up tracking and creatives"
+                ]
+              },
+              {
+                "title": "Warm up",
+                "dates": "Nov 13 – 19",
+                "points": [
+                  "Content that introduces your brand",
+                  "A waitlist for the offer",
+                  "A retargeting audience"
+                ]
+              },
+              {
+                "title": "Launch & peak",
+                "dates": "Nov 20 – 30",
+                "active": true,
+                "points": [
+                  "Highest ad budget",
+                  "**White Friday, Nov 27**",
+                  "Cyber Monday, Nov 30"
+                ]
+              },
+              {
+                "title": "Follow up",
+                "dates": "Dec 1 – 7",
+                "points": [
+                  "Retarget those who didn't buy",
+                  "Thank those who did",
+                  "Analyse the results"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "p",
+            "text": "The first phase matters most: everything you prepare before November 12 saves you budget in peak week."
+          },
+          {
+            "type": "h",
+            "text": "The offer: clarity before discount"
+          },
+          {
+            "type": "p",
+            "text": "In a week packed with offers, customers judge yours in seconds. Before you pick a discount percentage, make sure your offer answers three questions:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**What exactly do I get?** A specific product, with a clear price before and after the discount.",
+              "**Why now?** The real length of the offer, or a genuinely limited quantity. Don't run a countdown that never ends.",
+              "**Why from you?** Something competitors don't offer: a gift, free shipping, a warranty, or a ready-made bundle."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "Sometimes \"Buy the bundle and save SAR 150\" sells more than \"Up to 70% off\", because the customer knows straight away how much they'll save."
+          },
+          {
+            "type": "note",
+            "text": "**Don't forget your discount license:** in Saudi Arabia, selling at a discount requires a license from the Ministry of Commerce, for physical shops and online stores alike. You apply for it online, and it carries a barcode customers can scan to check the type of discount, its percentage and its duration (Okaz). Get it before your ads go live and display it in your store, because it also builds customer trust."
+          },
+          {
+            "type": "h",
+            "text": "Ads: what's new this season"
+          },
+          {
+            "type": "p",
+            "text": "The platforms changed their tools ahead of the holiday season. Here's what you need to know before you set your budget."
+          },
+          {
+            "type": "h3",
+            "text": "Meta (Instagram and Facebook)"
+          },
+          {
+            "type": "list",
+            "items": [
+              "In sales campaigns you can no longer choose placements manually; Meta distributes your ad through Advantage+ placements (Relevant Audience).",
+              "If a placement doesn't sell for you, use value rules to cut your bid on it by up to 90%. Set them up now, because White Friday week is no time for experiments.",
+              "Prepare every creative in 9:16, 4:5 and 1:1 so your offer doesn't show up cropped in Stories or Reels."
+            ]
+          },
+          {
+            "type": "h3",
+            "text": "Snapchat"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Dynamic product ads now appear inside chats (Sponsored Snaps), available to all advertisers since September 2026. If you have a product catalog, it's worth testing (Marketing Dive).",
+              "Value Optimization makes the campaign focus on higher-value purchases, but it is still in beta."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "**Budget:** don't put your whole budget on Friday. Spend part of it beforehand building an audience that knows you, and keep part for afterwards to retarget people who visited but didn't buy. A warm audience is far cheaper than a cold one in the most expensive week of the year."
+          },
+          {
+            "type": "h",
+            "text": "Mistakes that waste your budget"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**Starting on Friday itself:** an audience that doesn't know you, on the most expensive days for ads.",
+              "**Discounting without a license:** it exposes you to a violation and weakens customer trust.",
+              "**A slow store or complicated checkout:** you pay to bring the visitor in, then they leave before paying. Test buying from your phone before launch.",
+              "**Broken tracking:** without a pixel that works properly, the platforms optimise on wrong data.",
+              "**A vague offer:** \"Big discounts\" stops no one. A clear number and a clear product are what stop the scroll.",
+              "**Forgetting the post-season:** whoever bought from you on White Friday is the easiest customer to sell to again."
+            ]
+          },
+          {
+            "type": "h",
+            "text": "The bottom line"
+          },
+          {
+            "type": "p",
+            "text": "White Friday is won before it starts: a clear offer, a license in hand, a warm audience, and ads set up for the new updates. There are less than 4 weeks left, and that's enough time if you start today."
+          },
+          {
+            "type": "p",
+            "text": "If you'd like your campaigns reviewed before the season, get in touch and we'll get them ready together."
+          }
+        ],
+        "sources": [
+          "White Friday countdown — Khaleej Calculators",
+          "Ministry of Commerce and discount licenses — Okaz",
+          "Meta documents what replaces ad set placement controls — Relevant Audience",
+          "Snapchat promises advertisers faster conversions for the holidays — Marketing Dive"
+        ],
+        "cta": "Get your campaigns season-ready"
+      },
+      {
+        "tag": "Meta Ads",
+        "cover": "24H",
+        "date": "Nov 2, 2026",
+        "readTime": "4 min read",
+        "title": "Meta's Super Burst: book peak hours for your brand",
+        "excerpt": "A new format that reserves 3 to 24 hours on Facebook and Instagram with guaranteed reach, and when it's worth it.",
+        "body": [
+          {
+            "type": "lead",
+            "text": "On October 15, 2026 Meta launched a new ad feature called Ads Super Burst. It lets you book a fixed window of 3 to 24 hours on Facebook and Instagram, guarantees your reach, and can even keep competitors in your category from running in the same window."
+          },
+          {
+            "type": "p",
+            "text": "The idea is simple: some moments are worth a whole week of ads. Your product launch day, an awards night, or the first match of the season. In those moments it isn't enough for your ad to reach people over a few days; it needs a strong presence in the very hours when everyone is caught up in the event."
+          },
+          {
+            "type": "p",
+            "text": "Meta announced it at its Brand Building Summit, as one of four new tools aimed at brands building their name."
+          },
+          {
+            "type": "h",
+            "text": "What is Super Burst and how does it work?"
+          },
+          {
+            "type": "p",
+            "text": "Instead of entering the daily auction and waiting to see what you get, you book the hours you want in advance and know from the start how many people will see you, and at what price."
+          },
+          {
+            "type": "table",
+            "head": [
+              "Item",
+              "How it works"
+            ],
+            "rows": [
+              [
+                "Booking length",
+                "From 3 to 24 hours"
+              ],
+              [
+                "Planning",
+                "Through Reach Planner, which estimates reach and price for the day you choose"
+              ],
+              [
+                "Guaranteed reach",
+                "Meta guarantees the reach shown in Reach Planner"
+              ],
+              [
+                "Exclusivity",
+                "Optional; stops any other brand in your category from booking the same window"
+              ],
+              [
+                "Platforms",
+                "Facebook and Instagram"
+              ]
+            ]
+          },
+          {
+            "type": "p",
+            "text": "How is it different from regular campaigns? A regular campaign spreads its budget over several days and rides the swings of the auction. Super Burst concentrates your whole presence into one moment, at a price you know up front."
+          },
+          {
+            "type": "h",
+            "text": "What do the numbers say?"
+          },
+          {
+            "type": "p",
+            "text": "According to Meta, each test campaign reached 34 million people in a single day on average, roughly 14% of adults online in the US."
+          },
+          {
+            "type": "table",
+            "head": [
+              "Metric",
+              "Result (average)"
+            ],
+            "rows": [
+              [
+                "Ad recall",
+                "+2.9 percentage points"
+              ],
+              [
+                "Purchase intent",
+                "+0.6 percentage points"
+              ],
+              [
+                "Reach per campaign",
+                "34 million people"
+              ]
+            ]
+          },
+          {
+            "type": "note",
+            "text": "**A word of caution:** these are Meta's own numbers from the first advertisers who tried it, not something guaranteed for everyone. The only thing actually guaranteed is reach; whether people remember you and buy from you depends on how strong your ad is."
+          },
+          {
+            "type": "h",
+            "text": "When should you use it?"
+          },
+          {
+            "type": "p",
+            "text": "Super Burst is built for moments where timing matters more than frequency. Meta mentioned product launches, awards shows and the start of sports seasons. Here are examples that fit our market:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**A new product launch:** be strongly present on launch day itself instead of spreading it over days.",
+              "**The first night of Ramadan or Eid eve:** hours when everyone is on their phone and competition is fierce.",
+              "**White Friday:** book the peak hours and keep competitors in your category from running alongside you.",
+              "**League matches and major tournaments:** cover the match and the time before and after it.",
+              "**Riyadh Season or National Day:** occasions everyone follows at the same time."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "On the other hand, it doesn't suit everyday sales campaigns or small budgets. It's a brand-awareness tool booked in bulk; regular campaigns are still better for day-to-day sales."
+          },
+          {
+            "type": "h",
+            "text": "First Impression Ads: the first ad a user sees"
+          },
+          {
+            "type": "p",
+            "text": "Alongside Super Burst, Meta started testing First Impression Ads in the US. The idea is that just one brand per day takes the first ad slot in the Facebook feed as soon as a user opens the app."
+          },
+          {
+            "type": "p",
+            "text": "So instead of your ad competing with others further down the feed, it's the first ad that person sees that day. Meta says advertisers have been asking for something like this for years."
+          },
+          {
+            "type": "p",
+            "text": "The two complement each other: Super Burst guarantees big reach in specific hours, and First Impression Ads guarantees the most prominent slot. But the second is still a very limited test, and Meta hasn't said when it will open to everyone."
+          },
+          {
+            "type": "h",
+            "text": "When is it available? Tips before you book"
+          },
+          {
+            "type": "p",
+            "text": "Super Burst is rolling out to advertisers in phases from October 2026, while First Impression Ads is still a US-only test."
+          },
+          {
+            "type": "table",
+            "head": [
+              "Feature",
+              "Current status"
+            ],
+            "rows": [
+              [
+                "Ads Super Burst",
+                "Rolling out gradually to everyone"
+              ],
+              [
+                "First Impression Ads",
+                "Limited test in the US, one brand per day"
+              ]
+            ]
+          },
+          {
+            "type": "h3",
+            "text": "Before you add it to your plan"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**Check it's available in your market:** talk to your Meta rep or agency and ask whether it's available in Saudi Arabia or the market you're targeting.",
+              "**Book early:** with exclusivity, whoever books first gets the best hours and keeps competitors out.",
+              "**Get your ad ready before you book:** the booking guarantees you'll show up, but it won't make a weak ad work.",
+              "**Measure the impact properly:** use Brand Lift to see whether recall and purchase intent went up, not just clicks.",
+              "**Follow up with another campaign:** retarget the people who saw your ad during the booking with a regular sales campaign in the days after."
+            ]
+          },
+          {
+            "type": "h",
+            "text": "The takeaway"
+          },
+          {
+            "type": "p",
+            "text": "Super Burst brings to social ads something that used to belong only to TV: you book the big moment and know in advance how many people will see you. It doesn't replace your everyday campaigns, but it's a very strong option for brands that build their campaigns around seasons and occasions."
+          }
+        ],
+        "end": {
+          "text": "A guaranteed slot is only half the job;",
+          "highlight": "the other half is a great idea that makes people remember you."
+        },
+        "sources": [
+          "Meta Advertising Updates 2026: Ads Super Burst, First Impression Ads and Reels — Campaigns of the World",
+          "Meta introduces new brand advertising formats across Facebook and Instagram — Search Engine Land",
+          "Meta's official Brand Building Summit 2026 announcement"
+        ],
+        "cta": "Planning a seasonal campaign? Get in touch"
+      },
+      {
+        "tag": "Meta Ads",
+        "cover": "A+",
+        "date": "Nov 1, 2026",
+        "readTime": "4 min read",
+        "title": "Meta update: goodbye to manual ad placement controls",
+        "excerpt": "What changed with Advantage+ placements, and how to protect your budget with value rules.",
+        "body": [
+          {
+            "type": "lead",
+            "text": "If you've opened Ads Manager lately and noticed that Manual placements disappeared from your ad set, you're not alone. Since August 2026 Meta has been removing manual placement controls from most campaign objectives and now relies on Advantage+ placements to distribute your ad automatically."
+          },
+          {
+            "type": "p",
+            "text": "In this article we'll explain exactly what changed, why Meta did it, and most importantly: how to protect your budget if there are placements where you don't want your ad to appear."
+          },
+          {
+            "type": "h",
+            "text": "What changed?"
+          },
+          {
+            "type": "p",
+            "text": "You can no longer manually choose or exclude placements at the ad set level for four objectives, while the option is still available for two of them for now."
+          },
+          {
+            "type": "table",
+            "head": [
+              "Campaign objective",
+              "Manual placement control"
+            ],
+            "rows": [
+              [
+                "Sales",
+                "Removed"
+              ],
+              [
+                "Leads",
+                "Removed"
+              ],
+              [
+                "Engagement",
+                "Removed"
+              ],
+              [
+                "App promotion",
+                "Removed"
+              ],
+              [
+                "Awareness",
+                "Still available"
+              ],
+              [
+                "Traffic",
+                "Still available"
+              ]
+            ]
+          },
+          {
+            "type": "p",
+            "text": "The change is reaching accounts gradually, so you may still see the old option in your account for a while. It first appeared as a notice inside Ads Manager on August 20, 2026, and Meta then published an official help page in October 2026 (Social Media Today)."
+          },
+          {
+            "type": "h",
+            "text": "Why did Meta do this?"
+          },
+          {
+            "type": "p",
+            "text": "Meta wants its AI to decide where your ad appears instead of the advertiser restricting it. It says that in a test it ran, ad sets using Advantage+ placements achieved about 10% lower cost per result on average compared with manual placements (Relevant Audience)."
+          },
+          {
+            "type": "p",
+            "text": "But Meta didn't publish the sample size or the test period. And an average doesn't mean every account: some brands genuinely lose money on placements like Audience Network or search results, because the clicks there are cheaper but don't turn into sales."
+          },
+          {
+            "type": "h",
+            "text": "The fix: value rules"
+          },
+          {
+            "type": "p",
+            "text": "If you don't want to spend your budget on a particular placement, create a value rule that lowers your bid on it as far as possible. This is the tool Meta itself suggests as the alternative to manual exclusion."
+          },
+          {
+            "type": "p",
+            "text": "Put simply: instead of switching the placement off, you make it \"expensive\" for the system, so it spends much less there. The reverse also works: you can raise your bid on placements that actually sell for you."
+          },
+          {
+            "type": "h3",
+            "text": "Setup steps"
+          },
+          {
+            "type": "list",
+            "ordered": true,
+            "items": [
+              "Open Ads Manager, then Advertising settings, then Value rules.",
+              "Create a new rule set and give it a clear name, such as \"Reduce Audience Network\".",
+              "Add a rule, choose Placement as the criterion, then select the placement you don't want.",
+              "Lower the bid to the smallest percentage available. According to advertisers, the range runs from a 1,000% increase to a 90% decrease.",
+              "When you create the campaign, choose this rule set in the Value rules section.",
+              "Check results weekly in the Placement breakdown (Breakdown → Placement) to make sure spend there has dropped."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "Menu names may differ slightly depending on your account and interface language, because Meta is rolling the feature out gradually."
+          },
+          {
+            "type": "h3",
+            "text": "Know these limits before you start"
+          },
+          {
+            "type": "list",
+            "items": [
+              "A value rule reduces delivery on a placement but doesn't block it completely, so your ad may still appear there a little.",
+              "You can add up to 10 rules, each with at most two criteria, and Meta applies only the first rule that matches, so order them by priority (PPC Land).",
+              "You need sound conversion tracking (pixel or Conversions API), because the system bases its decisions on that data."
+            ]
+          },
+          {
+            "type": "h",
+            "text": "Other options worth trying"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**Account-level placement exclusions:** you can still exclude placements such as Audience Network, Facebook Marketplace and Facebook's right column from Account controls. This is a real exclusion, not a reduction, but it applies to every campaign in the account.",
+              "**A separate Awareness or Traffic campaign:** if you need a specific placement (Stories only, for example), these two objectives still allow manual selection. Start with a small budget to test the placement before scaling.",
+              "**A creative for every size:** prepare each ad in 9:16, 4:5 and 1:1. Meta now lets you upload up to 10 images and videos in a single ad and picks the right size for each placement, so your ad doesn't show up cropped or distorted."
+            ]
+          },
+          {
+            "type": "h",
+            "text": "The bottom line"
+          },
+          {
+            "type": "p",
+            "text": "Placement control hasn't disappeared; it has moved from \"on and off\" to \"more and less\". Whoever reviews the placement breakdown every week and uses value rules wisely will protect their budget, even with Advantage+."
+          },
+          {
+            "type": "p",
+            "text": "If you're not sure where your budget is going right now, get in touch and we'll review your account together."
+          }
+        ],
+        "sources": [
+          "Meta offers updated ad placement control guidance — Social Media Today",
+          "Meta documents what replaces ad set placement controls — Relevant Audience",
+          "Meta value rules now available for placement-specific bidding control — PPC Land",
+          "Some Meta advertisers lose placement controls, with bid cuts capped at 90% — PPC Land",
+          "Meta Removed Placement Controls From Ad Sets. Value Rules Are Not a Replacement — AdRise Lab"
+        ],
+        "cta": "Review your account with me"
+      },
       {
         "tag": "Strategy",
         "cover": "?",
