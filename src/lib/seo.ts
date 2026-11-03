@@ -11,7 +11,13 @@ const OG_LOCALES: Record<Locale, string> = { ar: "ar_SA", en: "en_US" };
 const HOME_LABEL: Record<Locale, string> = { ar: "الرئيسية", en: "Home" };
 
 /** Metadata for an inner page at /{locale}{path}; the locale layout supplies metadataBase and icons. */
-export function buildPageMetadata(locale: Locale, path: string, title: string, description: string): Metadata {
+export function buildPageMetadata(
+  locale: Locale,
+  path: string,
+  title: string,
+  description: string,
+  image: typeof OG_IMAGE = OG_IMAGE,
+): Metadata {
   const url = `/${locale}${path}`;
 
   return {
@@ -32,13 +38,13 @@ export function buildPageMetadata(locale: Locale, path: string, title: string, d
       siteName: "Mariam Wajeh",
       type: path.startsWith("/articles/") ? "article" : "website",
       locale: OG_LOCALES[locale],
-      images: [{ ...OG_IMAGE, alt: title }],
+      images: [{ ...image, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [OG_IMAGE.url],
+      images: [image.url],
     },
   };
 }

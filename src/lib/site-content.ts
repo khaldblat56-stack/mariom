@@ -148,15 +148,101 @@ export const TESTIMONIAL_LOGOS = ["/images/brands/kayan-alanfas.webp", "/images/
 
 export const BRAND_DOT_COUNT = 200;
 
-export const PORTRAIT_IMAGE = { src: "/images/mariam-portrait.webp", width: 620, height: 598 };
+export const PORTRAIT_IMAGE = { src: "/images/mariam-portrait.webp", width: 805, height: 900 };
 export const DESK_IMAGE = { src: "/images/mariam-desk.webp", width: 694, height: 426 };
 
-/** Order matches articles.items. */
+type ArticleMeta = {
+  slug: string;
+  cover: "c-teal" | "c-yellow" | "c-ink";
+  withPortrait: boolean;
+  ctaHref: string;
+  /** ISO publish date, used for JSON-LD and the sitemap. */
+  datePublished?: string;
+  /** Source URLs; order matches articles.items[i].sources. */
+  sources?: readonly string[];
+  /** Cover shown on the card and article hero (replaces the text cover). */
+  image?: { src: string; width: number; height: number };
+  /** 1200×630 social card for this article. */
+  ogImage?: { url: string; width: number; height: number };
+};
+
+function articleImages(slug: string) {
+  return {
+    image: { src: `/images/articles/${slug}.webp`, width: 1536, height: 864 },
+    ogImage: { url: `/images/articles/${slug}-og.webp`, width: 1200, height: 630 },
+  };
+}
+
+/** Order matches articles.items (newest first). */
 export const ARTICLES = [
-  { slug: "why-ads-dont-sell", cover: "c-teal", withPortrait: true, ctaHref: "#contact" },
-  { slug: "seo-sales-without-ads", cover: "c-yellow", withPortrait: false, ctaHref: "/results" },
-  { slug: "measure-leads-not-clicks", cover: "c-ink", withPortrait: false, ctaHref: "#contact" },
-] as const;
+  {
+    slug: "white-friday-2026",
+    ...articleImages("white-friday-2026"),
+    cover: "c-ink",
+    withPortrait: false,
+    ctaHref: "#contact",
+    datePublished: "2026-11-03",
+    sources: [
+      "https://khaleejcalculators.com/countdown/white-friday",
+      "https://www.okaz.com.sa/local/na/2234968",
+      "https://www.relevantaudience.com/meta/meta-placement-controls-alternatives-documented/",
+      "https://www.marketingdive.com/news/snapchat-promises-advertisers-faster-conversions-for-the-holidays/829965/",
+    ],
+  },
+  {
+    slug: "meta-super-burst",
+    ...articleImages("meta-super-burst"),
+    cover: "c-teal",
+    withPortrait: false,
+    ctaHref: "#contact",
+    datePublished: "2026-11-02",
+    sources: [
+      "https://campaignsoftheworld.com/news/meta-brand-advertising-updates-2026/",
+      "https://searchengineland.com/meta-introduces-new-brand-advertising-formats-across-facebook-and-instagram-496608",
+      "https://www.facebook.com/business/news/meta-brand-building-summit-2026",
+    ],
+  },
+  {
+    slug: "meta-placement-controls",
+    ...articleImages("meta-placement-controls"),
+    cover: "c-yellow",
+    withPortrait: false,
+    ctaHref: "#contact",
+    datePublished: "2026-11-01",
+    sources: [
+      "https://www.socialmediatoday.com/news/meta-offers-updated-ad-placement-control-guidance/832791/",
+      "https://www.relevantaudience.com/meta/meta-placement-controls-alternatives-documented/",
+      "https://ppc.land/meta-value-rules-now-available-for-placement-specific-bidding-control/",
+      "https://ppc.land/some-meta-advertisers-lose-placement-controls-with-bid-cuts-capped-at-90/",
+      "https://adriselab.com/blog/meta-placement-controls-removed-value-rules-2026",
+    ],
+  },
+  {
+    slug: "why-ads-dont-sell",
+    ...articleImages("why-ads-dont-sell"),
+    cover: "c-teal",
+    withPortrait: false,
+    ctaHref: "#contact",
+  },
+  {
+    slug: "seo-sales-without-ads",
+    ...articleImages("seo-sales-without-ads"),
+    cover: "c-yellow",
+    withPortrait: false,
+    ctaHref: "/results",
+  },
+  {
+    slug: "measure-leads-not-clicks",
+    ...articleImages("measure-leads-not-clicks"),
+    cover: "c-ink",
+    withPortrait: false,
+    ctaHref: "#contact",
+  },
+] as const satisfies readonly ArticleMeta[];
+
+export function getArticleMeta(index: number): ArticleMeta | undefined {
+  return ARTICLES[index];
+}
 
 export type ArticleSlug = (typeof ARTICLES)[number]["slug"];
 
