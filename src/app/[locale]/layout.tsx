@@ -25,7 +25,7 @@ const expoArabic = localFont({
 
 const seo = {
   ar: {
-    title: "مريم وجيه الأعور | مستشار تسويق رقمي وحملات إعلانية ممولة",
+    title: "مريم | مستشار تسويق رقمي وحملات إعلانية ممولة",
     description:
       "مستشارة تسويق رقمي بخبرة 10+ سنوات في إدارة حملات إعلانية ممولة لأكثر من 20 جمعية خيرية ومؤسسة تجارية. متخصصة في ميتا ادز، جوجل ادز والتسويق بالذكاء الاصطناعي.",
     longDescription:
@@ -49,7 +49,7 @@ const seo = {
     ogLocale: "ar_SA",
   },
   en: {
-    title: "Mariam Wajeh Alawar | Digital Marketing Consultant & Paid Ads Expert",
+    title: "Mariam | Digital Marketing Consultant & Paid Ads Expert",
     description:
       "Digital marketing consultant with 10+ years of experience managing paid ad campaigns for 20+ charities and businesses across the Gulf. Meta Ads, Google Ads & AI-powered marketing.",
     longDescription:
@@ -166,7 +166,7 @@ export default async function LocaleLayout({
         image: `${SITE_URL}${OG_IMAGE.url}`,
         logo: `${SITE_URL}/images/logo.webp`,
         description: localeSeo.description,
-        telephone: "+96891933324",
+        telephone: "+970592649700",
         areaServed: ["SA", "QA", "OM", "AE", "KW", "BH"],
         founder: { "@id": `${SITE_URL}/#person` },
       },

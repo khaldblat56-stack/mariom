@@ -3,8 +3,8 @@
  * matching key and index (e.g. HERO_RESULT_CARDS[i] ↔ hero.cards[i]).
  */
 
-export const WHATSAPP_NUMBER = "96891933324";
-export const WHATSAPP_DISPLAY = "+968 9193 3324";
+export const WHATSAPP_NUMBER = "970592649700";
+export const WHATSAPP_DISPLAY = "+970 592 649 700";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export const SOCIAL_LINKS = {
